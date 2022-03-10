@@ -38,4 +38,7 @@ class User extends Authenticatable
     public function typologies() {
         return $this->belongsToMany("App\Typology");
     }
+    public function products() {
+        return $this->hasMany("App\Product"); 
+    }
 }
