@@ -17,6 +17,7 @@ class CreateTypologiesTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('slug', 130)->unique();
+            $table->string('image');
             $table->timestamps();
         });
     }
