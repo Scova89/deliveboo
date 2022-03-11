@@ -20,14 +20,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Descrizione prodotto</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Inserisci la descrizione del prodotto" value="{{old('description')}}"></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Inserisci la descrizione del prodotto" >{{old('description')}}</textarea>
                                 @error('description')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="intolerance">Intolleranze alimentari del prodotto</label>
-                                <textarea class="form-control @error('intolerance') is-invalid @enderror" id="intolerance" name="intolerance" rows="3" placeholder="Inserisci le intolleranze" value="{{old('intolerance')}}"></textarea>
+                                <textarea class="form-control @error('intolerance') is-invalid @enderror" id="intolerance" name="intolerance" rows="3" placeholder="Inserisci le intolleranze" >{{old('intolerance')}}</textarea>
                                 @error('intolerance')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
