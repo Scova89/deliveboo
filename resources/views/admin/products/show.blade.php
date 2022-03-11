@@ -7,8 +7,13 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h3>{{$product->name}}</h3>
-                        <div>
-                            <a href="{{route("products.edit", $product->id)}}"><button type="button" class="btn btn-warning">Modifica</button></a>
+                        <div class="d-flex">
+                            <a class="mr-2" href="{{route("products.edit", $product->id)}}"><button type="button" class="btn btn-warning">Modifica</button></a>
+                            <form action="{{route("products.destroy", $product->id)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
                         </div>
                     </div>
 

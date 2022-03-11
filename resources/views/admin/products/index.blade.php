@@ -17,23 +17,26 @@
                                     <th scope="col">id</th>
                                     <th scope="col">Nome Prodotto</th>
                                     <th scope="col">In vendita</th>
-                                    <th scope="col">Visibile</th>
                                     <th scope="col">Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($products as $product)
-                                @if (Auth::id() == $product->user_id)  
+                                @if (Auth::id() == $product->user_id && $product->visible)  
                                 <tr>
                                     <th scope="row">{{$product->id}}</th>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->purchasable ? 'Si' : 'No'}}</td>
-                                    <td>{{$product->visible ? 'Si' : 'No'}}</td>
                                     <td> 
                                         <a href="{{route("products.show", $product->id)}}">
                                             <button type="button" class="btn btn-primary">Visualizza</button>
                                         </a>
                                         <a href="{{route("products.edit", $product->id)}}"><button type="button" class="btn btn-warning">Modifica</button></a>
+                                        <form action="{{route("products.destroy", $product->id)}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
                                     </td>
 
                                 </tr>

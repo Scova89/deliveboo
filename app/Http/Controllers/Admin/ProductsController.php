@@ -80,7 +80,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        if (Auth::id() == $product->user_id) {
+        if (Auth::id() == $product->user_id && $product->visible) {
             return view("admin.products.show", compact("product"));
         } else {
             return view("admin.pagenotfound");
@@ -133,9 +133,14 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->visible = false;
+        $product->purchasable = false;
+        $product->save();
+        
+        return redirect()->route("products.index");
+        
     }
 
     /**
