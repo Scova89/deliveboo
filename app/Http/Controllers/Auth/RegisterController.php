@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -53,6 +55,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required','unique:users', 'numeric', 'digits_between:8,15'],
+            'iva' => ['required','unique:users', 'numeric', 'digits:11'],
+            'image' => ['nullable|mimes:jpeg,bmp,png,jpg|max:2048'],
         ]);
     }
 
