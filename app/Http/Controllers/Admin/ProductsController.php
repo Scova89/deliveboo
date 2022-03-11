@@ -58,12 +58,8 @@ class ProductsController extends Controller
         $newProduct->description = $data["description"];
         $newProduct->price = $data["price"];
         $newProduct->intolerance = $data["intolerance"];
-        if (!isset($data['visible'])) {
-            $newProduct->visible = false;
-        }
-        if (!isset($data['purchasable'])) {
-            $newProduct->purchasable = false;
-        }
+        $newProduct->visible = isset($data['visible']);
+        $newProduct->purchasable = isset($data['purchasable']);
         $newProduct->intolerance = $data["intolerance"];
         $newProduct->user_id = Auth::id();
         $newProduct->slug = $this->getSlug($newProduct->name);
@@ -117,16 +113,8 @@ class ProductsController extends Controller
         $product->description = $data["description"];
         $product->price = $data["price"];
         $product->intolerance = $data["intolerance"];
-        if (!isset($data['visible'])) {
-            $product->visible = false;
-        } else {
-            $product->visible = true;
-        }
-        if (!isset($data['purchasable'])) {
-            $product->purchasable = false;
-        } else {
-            $product->purchasable = true;
-        }
+        $product->visible = isset($data['visible']);
+        $product->purchasable = isset($data['purchasable']);
         $product->intolerance = $data["intolerance"];
         $product->user_id = Auth::id();
         $product->slug = $this->getSlug($product->name);
