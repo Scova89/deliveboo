@@ -109,9 +109,34 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate($this->validationRule);
+        $data = $request->all();
+        $product->name = $data["name"];
+        $product->description = $data["description"];
+        $product->price = $data["price"];
+        $product->intolerance = $data["intolerance"];
+        if (!isset($data['visible'])) {
+            $product->visible = false;
+        } else {
+            $product->visible = true;
+        }
+        if (!isset($data['purchasable'])) {
+            $product->purchasable = false;
+        } else {
+            $product->purchasable = true;
+        }
+        $product->intolerance = $data["intolerance"];
+        $product->user_id = Auth::id();
+        $product->slug = $this->getSlug($product->name);
+        if (isset($data['image'])) {
+            $path_image = Storage::put('uploads', $data['image']);
+            $product->image = $path_image;
+        }
+        $product->save();
+
+        return redirect()->route("products.show", $product->id);
     }
 
     /**
