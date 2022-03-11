@@ -82,9 +82,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        if (Auth::id() == $product->user_id) {
+            return view("admin.products.show", compact("product"));
+        } else {
+            return view("admin.pagenotfound");
+        }
     }
 
     /**
@@ -93,9 +97,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view("admin.products.edit", compact("product"));
     }
 
     /**
