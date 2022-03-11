@@ -65,7 +65,7 @@
                             <label for="iva" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="iva" type="number" class="form-control @error('phone') is-invalid @enderror" name="iva" value="{{ old('iva') }}" required autocomplete="iva" maxlength="11">
+                                <input id="iva" type="number" class="form-control @error('iva') is-invalid @enderror" name="iva" value="{{ old('iva') }}" required autocomplete="iva" maxlength="11">
                                 {{-- <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{11,14}" required> --}}
                                 @error('iva')
                                     <span class="invalid-feedback" role="alert">

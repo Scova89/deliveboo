@@ -56,8 +56,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['required', 'string', 'max:255'],
-            'phone' => ['required','unique:users', 'numeric', 'digits_between:8,15'],
-            'iva' => ['required','unique:users', 'numeric', 'digits:11'],
+            'phone' => ['required','unique:users', 'digits_between:8,15'],
+            'iva' => ['required','unique:users', 'digits:11'],
             'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
         ]);
     }
@@ -70,21 +70,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $newUser = new User();
+        $newUser->name = $data['name'];
+        $newUser->email = $data['email'];
+        $newUser->password = Hash::make($data['password']);
+        $newUser->address = $data['address'];
+        $newUser->phone = $data['phone'];
+        $newUser->iva = $data['iva'];
+        $newUser->slug = $this->getSlug($data['name']);
         if (isset($data['image'])) {
             $path_image = Storage::put('uploads', $data['image']);
-            $newUserImage = $path_image;
+            $newUser->image = $path_image;
         }
+        $newUser->save();
 
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'address' => $data['address'],
-            'phone' => $data['phone'],
-            'iva' => $data['iva'],
-            'slug' => $this->getSlug($data['name']),
-            'image' => $newUserImage
-        ]);
+        return $newUser;
     }
 
 
