@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -53,6 +55,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required','unique:users', 'numeric', 'digits_between:8,15'],
+            'iva' => ['required','unique:users', 'numeric', 'digits:11'],
+            'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
         ]);
     }
 
@@ -64,10 +70,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (isset($data['image'])) {
+            $path_image = Storage::put('uploads', $data['image']);
+            $newUserImage = $path_image;
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'iva' => $data['iva'],
+            'slug' => $this->getSlug($data['name']),
+            'image' => $newUserImage
         ]);
+    }
+
+
+    /**
+     * getSlug
+     *
+     * @param  mixed $title
+     * @return void
+     */
+    protected function getSlug($name)
+    {
+        $slug = Str::of($name)->slug("-");
+        $count = 1;
+        while (User::where("slug", $slug)->first()) {
+            $slug = Str::of($name)->slug("-") . "-{$count}";
+            $count++;
+        }
+        return $slug;
     }
 }

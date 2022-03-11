@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('city', 100);
+            $table->string('city', 100)->default('Polignano A Mare');
             $table->string('slug', 130)->unique();
             $table->bigInteger('phone')->unique();
             $table->string('address', 200);
