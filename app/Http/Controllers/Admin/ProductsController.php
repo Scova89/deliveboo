@@ -16,7 +16,6 @@ class ProductsController extends Controller
         "name" => "required|string|max:100",
         "description" => "required",
         "price" => "required|numeric",
-        'visible' => 'nullable',
         "intolerance" => "nullable",
         "purchasable" => 'nullable',
         "image" => "nullable|max:2048|mimes:jpeg,bpm,png,jpg,webp",
@@ -58,7 +57,6 @@ class ProductsController extends Controller
         $newProduct->description = $data["description"];
         $newProduct->price = $data["price"];
         $newProduct->intolerance = $data["intolerance"];
-        $newProduct->visible = isset($data['visible']);
         $newProduct->purchasable = isset($data['purchasable']);
         $newProduct->intolerance = $data["intolerance"];
         $newProduct->user_id = Auth::id();
@@ -113,7 +111,6 @@ class ProductsController extends Controller
         $product->description = $data["description"];
         $product->price = $data["price"];
         $product->intolerance = $data["intolerance"];
-        $product->visible = isset($data['visible']);
         $product->purchasable = isset($data['purchasable']);
         $product->intolerance = $data["intolerance"];
         $product->user_id = Auth::id();
