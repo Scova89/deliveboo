@@ -8,7 +8,7 @@
                 <div class="card-header">Lista Tipologie</div>
                 <div class="card-body">
                     <a href="{{route("typologies.create")}}">
-                        <button type="button" class="btn btn-success">Crea Tipologia</button>
+                        <button type="button" class="btn btn-success mb-3">Crea Tipologia</button>
                     </a>
                     <table class="table">
                         <thead>

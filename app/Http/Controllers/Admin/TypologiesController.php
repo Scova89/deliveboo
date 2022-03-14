@@ -65,7 +65,7 @@ class TypologiesController extends Controller
         }
         $newTypology->save();
 
-        // return redirect()->route("typologies.show", $newTypology->id);
+        return redirect()->route("typologies.show", $newTypology->id);
     }
 
     /**
@@ -89,9 +89,13 @@ class TypologiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Typology $typology)
     {
-        //
+        if (Auth::user()->admin) {
+            return view('admin.typologies.edit', compact('typology'));
+        } else {
+            return view("admin.pagenotfound");
+        } 
     }
 
     /**
@@ -101,9 +105,21 @@ class TypologiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Typology $typology)
     {
-        //
+        if (Auth::user()->admin) {
+            $request->validate($this->validationRule);
+            $data = $request->all();
+            $typology->name = $data["name"];
+            $typology->slug = $this->getSlug($typology->name);
+            $path_image = Storage::put('uploads', $data['image']);
+            $typology->image = $path_image;
+            $typology->save();
+
+            return redirect()->route("typologies.show", $typology->id);
+        } else {
+            return view("admin.pagenotfound");
+        } 
     }
 
     /**
@@ -112,9 +128,15 @@ class TypologiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Typology $typology)
     {
-        //
+        if ($typology->image) {
+            Storage::delete($typology->image);
+        }
+
+        $typology->delete();
+
+        return redirect()->route("typologies.index");
     }
     /**
      * getSlug
