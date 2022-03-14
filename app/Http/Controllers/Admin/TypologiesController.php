@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Typology;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class TypologiesController extends Controller
 {
@@ -14,7 +18,12 @@ class TypologiesController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->admin){
+            $typologies = Typology::all();
+            return view('admin.typologies.index', compact('typologies'));
+        }else{
+            return view("admin.pagenotfound");
+        } 
     }
 
     /**
@@ -24,7 +33,7 @@ class TypologiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.typologies.create');
     }
 
     /**

@@ -36,6 +36,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('products.index') }}">Prodotti</a>
                         </li>
+                        @if(Auth::user() != null && Auth::user()->admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('typologies.index') }}">Tipologia</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
