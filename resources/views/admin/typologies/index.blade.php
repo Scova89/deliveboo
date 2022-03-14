@@ -20,11 +20,10 @@
                         </thead>
                         <tbody>
                             @foreach ($typologies as $typology)
-                            @if (Auth::id() == 1 ) 
+                            @if (Auth::user()->admin ) 
                             <tr>
                                 <th scope="row">{{$typology->id}}</th>
                                 <td>{{$typology->name}}</td>
-                                <td>{{$typology->purchasable ? 'Si' : 'No'}}</td>
                                 <td> 
                                     <a href="{{route("typologies.show", $typology->id)}}">
                                         <button type="button" class="btn btn-primary">Visualizza</button>

@@ -151,7 +151,6 @@ class ProductsController extends Controller
         } else {
             return view("admin.pagenotfound");
         }
-       
         
     }
 

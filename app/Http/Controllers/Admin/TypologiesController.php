@@ -7,10 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Typology;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class TypologiesController extends Controller
 {
+    protected $validationRule = [
+        "name" => "required|string|max:100",
+        "image" => "required|max:2048|mimes:jpeg,bpm,png,jpg,webp",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +39,11 @@ class TypologiesController extends Controller
      */
     public function create()
     {
-        return view('admin.typologies.create');
+        if (Auth::user()->admin){
+            return view('admin.typologies.create');
+        }else{
+            return view("admin.pagenotfound");
+        } 
     }
 
     /**
@@ -44,7 +54,18 @@ class TypologiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRule);
+        $data = $request->all();
+        $newTypology = new Typology();
+        $newTypology->name = $data["name"];
+        $newTypology->slug = $this->getSlug($newTypology->name);
+        if (isset($data['image'])) {
+            $path_image = Storage::put('uploads', $data['image']);
+            $newTypology->image = $path_image;
+        }
+        $newTypology->save();
+
+        // return redirect()->route("typologies.show", $newTypology->id);
     }
 
     /**
@@ -53,9 +74,13 @@ class TypologiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Typology $typology)
     {
-        //
+        if (Auth::user()->admin){
+            return view('admin.typologies.show', compact('typology'));
+        }else{
+            return view("admin.pagenotfound");
+        } 
     }
 
     /**
@@ -90,5 +115,21 @@ class TypologiesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * getSlug
+     *
+     * @param  mixed $title
+     * @return void
+     */
+    private function getSlug($title)
+    {
+        $slug = Str::of($title)->slug("-");
+        $count = 1;
+        while (Typology::where("slug", $slug)->first()) {
+            $slug = Str::of($title)->slug("-") . "-{$count}";
+            $count++;
+        }
+        return $slug;
     }
 }
