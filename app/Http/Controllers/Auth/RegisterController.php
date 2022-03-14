@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -82,9 +83,12 @@ class RegisterController extends Controller
             $path_image = Storage::put('uploads', $data['image']);
             $newUser->image = $path_image;
         }
+        $utenti = DB::table('users')->first();
+        if ($utenti == null){
+            $newUser->admin=true;
+        }
         
         $newUser->save();
-        
 
         return $newUser;
     }
