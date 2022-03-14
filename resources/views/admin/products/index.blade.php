@@ -6,10 +6,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Lista Prodotti</div>
-
                     <div class="card-body">
                         <a href="{{route("products.create")}}">
-                            <button type="button" class="btn btn-success">Crea Prodotto</button>
+                            <button type="button" class="btn btn-success mb-3">Crea Prodotto</button>
                         </a>
                         <table class="table">
                             <thead>
@@ -59,12 +58,9 @@
                                             </div>
                                         </div>
                                     </td>
-
                                 </tr>
                                 @endif
-
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

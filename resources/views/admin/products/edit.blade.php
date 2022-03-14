@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Lista Prodotti</div>
+                    <div class="card-header">Prodotto</div>
 
                     <div class="card-body">
 
@@ -58,7 +58,7 @@
                                 <p>Immagine</p>
                                 
                                 @if ($product->image)
-                                    <img height="100" src="{{asset("storage/$product->image")}}" alt="{{$product->name}}.' image'">
+                                    <img height="100" src="{{asset("storage/$product->image")}}" alt="{{$product->name.' image'}}">
                                 @endif
 
                                 

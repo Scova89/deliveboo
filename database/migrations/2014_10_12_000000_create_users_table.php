@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->boolean('open')->default(true);
             $table->string('iva')->unique();
             $table->string('image')->nullable();
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
