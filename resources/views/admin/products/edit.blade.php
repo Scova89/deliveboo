@@ -40,21 +40,7 @@
                                 <div class="alert alert-danger mt-3">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group ">
-
-                                <div class="form-check form-check-inline">
-                                    @php
-                                        $checked = old("visible") ?? $product->visible;
-                                    @endphp
-                                    <input class="form-check-input @error('visible') is-invalid @enderror" type="checkbox" name="visible" id="visible" value="visible" {{$checked ? "checked" : ""}}>
-                                    <label class="form-check-label" for="visible">Visibile</label>
-                                </div>
-                                
-                                @error('visible')
-                                    <div class="alert alert-danger">{{$message}}</div>
-                                @enderror
-
-                            </div>
+                            
                             <div class="form-group ">
                                 @php
                                     $checked = old("purchasable") ?? $product->purchasable;
