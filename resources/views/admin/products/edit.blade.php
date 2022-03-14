@@ -14,14 +14,14 @@
                             @method("PUT")
                             <div class="form-group">
                                 <label for="name">Nome prodotto</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Inserisci il nome del prodotto" value="{{old('name') ?? $product->name}}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Inserisci il nome del prodotto" value="{{old('name') ?? $product->name}}" required>
                                 @error('name')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="description">Descrizione prodotto</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Inserisci la descrizione del prodotto" >{{old('description') ?? $product->description}}</textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Inserisci la descrizione del prodotto" required>{{old('description') ?? $product->description}}</textarea>
                                 @error('description')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Prezzo</label>
-                                <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Inserisci il prezzo del prodotto" value="{{old('price') ?? $product->price}}">
+                                <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Inserisci il prezzo del prodotto" value="{{old('price') ?? $product->price}}" required>
                                 @error('price')
                                 <div class="alert alert-danger mt-3">{{ $message }}</div>
                                 @enderror
@@ -53,7 +53,6 @@
                                 @error('purchasable')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
-
                             </div>
                             <div class="mb-3" >
                                 <p>Immagine</p>
