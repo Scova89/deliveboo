@@ -26,7 +26,7 @@
                         <img src="{{asset('storage/' . Auth::user()->image)}}" alt="{{Auth::user()->name}}" style="max-width: 100%">
                     @endif
 
-
+                    
 
 
 

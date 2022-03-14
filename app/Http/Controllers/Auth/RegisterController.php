@@ -56,8 +56,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['required', 'string', 'max:255'],
-            'phone' => ['required','unique:users', 'digits_between:8,15'],
-            'iva' => ['required','unique:users', 'digits:11'],
+            'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
+            'iva' => ['required','unique:users', 'digits:11', 'numeric'],
             'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
         ]);
     }
@@ -82,7 +82,9 @@ class RegisterController extends Controller
             $path_image = Storage::put('uploads', $data['image']);
             $newUser->image = $path_image;
         }
+        
         $newUser->save();
+        
 
         return $newUser;
     }

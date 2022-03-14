@@ -52,7 +52,7 @@
 
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" maxlength="15">
-                                {{-- <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{11,14}" required> --}}
+                                
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
 
                             <div class="col-md-6">
                                 <input id="iva" type="number" class="form-control @error('iva') is-invalid @enderror" name="iva" value="{{ old('iva') }}" required autocomplete="iva" maxlength="11">
-                                {{-- <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{11,14}" required> --}}
+                                
                                 @error('iva')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
