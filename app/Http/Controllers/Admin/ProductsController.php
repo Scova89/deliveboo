@@ -93,7 +93,12 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view("admin.products.edit", compact("product"));
+        if (Auth::id() == $product->user_id && $product->visible) {
+            return view("admin.products.edit", compact("product"));
+        } else {
+            return view("admin.pagenotfound");
+        }
+        
     }
 
     /**
@@ -105,23 +110,28 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $request->validate($this->validationRule);
-        $data = $request->all();
-        $product->name = $data["name"];
-        $product->description = $data["description"];
-        $product->price = $data["price"];
-        $product->intolerance = $data["intolerance"];
-        $product->purchasable = isset($data['purchasable']);
-        $product->intolerance = $data["intolerance"];
-        $product->user_id = Auth::id();
-        $product->slug = $this->getSlug($product->name);
-        if (isset($data['image'])) {
-            $path_image = Storage::put('uploads', $data['image']);
-            $product->image = $path_image;
+        if (Auth::id() == $product->user_id && $product->visible) {
+            $request->validate($this->validationRule);
+            $data = $request->all();
+            $product->name = $data["name"];
+            $product->description = $data["description"];
+            $product->price = $data["price"];
+            $product->intolerance = $data["intolerance"];
+            $product->purchasable = isset($data['purchasable']);
+            $product->intolerance = $data["intolerance"];
+            $product->user_id = Auth::id();
+            $product->slug = $this->getSlug($product->name);
+            if (isset($data['image'])) {
+                $path_image = Storage::put('uploads', $data['image']);
+                $product->image = $path_image;
+            }
+            $product->save();
+    
+            return redirect()->route("products.show", $product->id);
+        } else {
+            return view("admin.pagenotfound");
         }
-        $product->save();
-
-        return redirect()->route("products.show", $product->id);
+        
     }
 
     /**
@@ -132,11 +142,16 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->visible = false;
-        $product->purchasable = false;
-        $product->save();
-        
-        return redirect()->route("products.index");
+        if (Auth::id() == $product->user_id && $product->visible) {
+            $product->visible = false;
+            $product->purchasable = false;
+            $product->save();
+            
+            return redirect()->route("products.index");
+        } else {
+            return view("admin.pagenotfound");
+        }
+       
         
     }
 
