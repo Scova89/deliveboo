@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import Home from './pages/Home.vue';
 import PageNotFound from "./pages/PageNotFound.vue";
+import Ristoranti from "./pages/Ristoranti.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -14,6 +15,12 @@ const router = new VueRouter({
             name: "home",
             component: Home,
             meta: { title: 'Home' }
+        },
+        {
+            path: "/ristoranti",
+            name: "ristoranti",
+            component: Ristoranti,
+            meta: { title: 'Ristoranti' }
         },
         {
             path: "*",
