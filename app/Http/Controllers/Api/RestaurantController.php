@@ -17,7 +17,7 @@ class RestaurantController extends Controller
         $restaurant = User::where('slug', $slug)->with(['typologies', 'products'])->first();
         // 404
         if (empty($restaurant)) {
-            return response()->json(["message" => "Restaurant Not Found"], 404);
+            return response()->json(["message" => "Ristorante non trovato"], 404);
         }
         return response()->json($restaurant);
     }
