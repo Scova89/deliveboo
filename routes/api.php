@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Rotte ristoranti
+Route::get('/ristoranti', 'Api\RestaurantController@index');
+Route::get('/ristoranti/{slug}', 'Api\RestaurantController@show');
+
+// Rotte categorie
+Route::get('/categorie', 'Api\TypologyController@index');
+Route::get('/categorie/{slug}', 'Api\TypologyController@show');
+
+// Rotte prodotti
+Route::get('/prodotti/{slug}', 'Api\ProductController@show');
