@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">Registrazione</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Resturant Name') }} <span style="color: red">*</span>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome attività <span style="color: red">*</span>
                             </label>
 
                             <div class="col-md-6">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }} <span style="color: red">*</span></label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">Città <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control" value="Polignano a Mare" required disabled>
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }} <span style="color: red">*</span></label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }} <span style="color: red">*</span></label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Telefono <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" maxlength="15" minlength="9">
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="iva" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }} <span style="color: red">*</span></label>
+                            <label for="iva" class="col-md-4 col-form-label text-md-right">Partita IVA <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="iva" type="text" class="form-control @error('iva') is-invalid @enderror" name="iva" value="{{ old('iva') }}" required autocomplete="iva" minlength="11" maxlength="11" pattern="[0-9]{11}">
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} <span style="color: red">*</span></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <span style="color: red">*</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -105,33 +105,42 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <span style="color: red">*</span></label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Conferma Password <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
-                        <div class="form-group ">
-                                    <p>Tipologie:</p>
-                                    @foreach ($typologies as $typology)
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="typologies[]" id="{{$typology->slug}}" value="{{$typology->id}}" {{in_array($typology->id, old("typologies", []))? 'checked' : ''}}>
-                                            <label class="form-check-label" for="{{$typology->slug}}">{{$typology->name}}</label>
+                        <div class="form-group typologies row">
+                                    <p class="col-md-4 col-form-label text-md-right">Tipologie:</p>
+                                    <div class="container-typologies col-md-6">
+                                        <div>
+                                            @foreach ($typologies as $typology)
+                                            <div class="form-check form-check">
+                                                <input class="form-check-input" type="checkbox" name="typologies[]" id="{{$typology->slug}}" value="{{$typology->id}}" {{in_array($typology->id, old("typologies", []))? 'checked' : ''}}>
+                                                <label class="form-check-label" for="{{$typology->slug}}">{{$typology->name}}</label>
+                                            </div>
+                                            @endforeach
                                         </div>
-
-                                        @endforeach
-                                        @error('typologies')
-                                            <div class="alert alert-danger">{{$message}}</div>
-                                        @enderror
-
+                                    </div>
+                                    @error('typologies')
+                                        <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
                         
-                        <div class="form-group mb-3 text-center">
-                            <label for="image">Carica immagine del ristorante</label>
-                            <img src="" alt="" id="preview" width="100">
-                            <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
-
+                
+                        
+                        <div class="mb-3 row" >
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Carica immagine del ristorante:</label>
+                            
+                            <div class="col-md-6 d-flex align-items-center">
+                                <img id="preview" width="100" src="" class="mr-2">
+                            
+                            
+                                <input type="file" id="image" name="image" onchange="PreviewImage();" class="@error('image') is-invalid @enderror">
+                            </div>
+                            
                             <script type="text/javascript">
 
                                 function PreviewImage() {
@@ -144,16 +153,14 @@
                                 };
 
                             </script>
-                            
-                            @error('image')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
-
-                        <div class="form-group row mb-0">
+                        @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group row mb-0 mt-5">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    Registrati
                                 </button>
                             </div>
                         </div>
