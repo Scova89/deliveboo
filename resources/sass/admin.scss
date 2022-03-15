@@ -6,3 +6,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.typologies {
+    .container-typologies {
+        padding-left: 15px;
+        padding-right: 15px;
+        >div{
+            width: 100%;
+            height: 200px;
+            overflow-y: auto;
+            padding: 5px 10px;
+            border: 1px solid #ced4da;
+            padding: 5px 10px;
+        }   
+    }
+}
