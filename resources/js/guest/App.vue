@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <Header/>
         <Main/>
         <Footer/>
@@ -23,5 +23,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+@import '../../sass/_variables.scss';
+    .app{
+        background-color: $background;
+        min-height: 100vh;
+    }
 </style>
