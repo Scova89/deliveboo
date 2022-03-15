@@ -33,7 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">Prodotti</a>
+                        </li>
+                        @if(Auth::user() != null && Auth::user()->admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('typologies.index') }}">Tipologie</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

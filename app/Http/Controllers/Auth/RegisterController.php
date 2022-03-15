@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Typology;
 
 class RegisterController extends Controller
 {
@@ -53,7 +57,23 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
+            'iva' => ['required','unique:users', 'digits:11', 'numeric'],
+            'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
+            'typologies' => ['nullable','exists:typologies,id'],
         ]);
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $typologies = Typology::all();
+        return view('auth.register', compact("typologies"));
     }
 
     /**
@@ -64,10 +84,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $newUser = new User();
+        $newUser->name = $data['name'];
+        $newUser->email = $data['email'];
+        $newUser->password = Hash::make($data['password']);
+        $newUser->address = $data['address'];
+        $newUser->phone = $data['phone'];
+        $newUser->iva = $data['iva'];
+        $newUser->slug = $this->getSlug($data['name']);
+        if (isset($data['image'])) {
+            $path_image = Storage::put('uploads', $data['image']);
+            $newUser->image = $path_image;
+        }
+        $utenti = DB::table('users')->first();
+        if ($utenti == null){
+            $newUser->admin=true;
+        }
+        $newUser->save();
+        
+        if (isset($data['typologies'])) {
+            $newUser->typologies()->sync($data['typologies']);
+        }
+        return $newUser;
+    }
+
+
+    /**
+     * getSlug
+     *
+     * @param  mixed $title
+     * @return void
+     */
+    protected function getSlug($name)
+    {
+        $slug = Str::of($name)->slug("-");
+        $count = 1;
+        while (User::where("slug", $slug)->first()) {
+            $slug = Str::of($name)->slug("-") . "-{$count}";
+            $count++;
+        }
+        return $slug;
     }
 }
