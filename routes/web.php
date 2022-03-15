@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -26,3 +26,7 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
     Route::resource('products', 'ProductsController');
     Route::resource('typologies', 'TypologiesController');
 });
+
+Route::get("{any?}", function () {
+    return view("front");
+})->where("any", ".*");
