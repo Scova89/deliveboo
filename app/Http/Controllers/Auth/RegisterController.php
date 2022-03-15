@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Typology;
 
 class RegisterController extends Controller
 {
@@ -60,7 +61,19 @@ class RegisterController extends Controller
             'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
             'iva' => ['required','unique:users', 'digits:11', 'numeric'],
             'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
+            'typologies' => ['nullable','exists:typologies,id'],
         ]);
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $typologies = Typology::all();
+        return view('auth.register', compact("typologies"));
     }
 
     /**
@@ -87,9 +100,11 @@ class RegisterController extends Controller
         if ($utenti == null){
             $newUser->admin=true;
         }
-        
         $newUser->save();
-
+        
+        if (isset($data['typologies'])) {
+            $newUser->typologies()->sync($data['typologies']);
+        }
         return $newUser;
     }
 
