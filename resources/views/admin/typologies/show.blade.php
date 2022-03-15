@@ -42,12 +42,21 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="card-body">
                         @if ($typology->image)
-                            <div class="mb-3">
-                                <img style="max-width: 100%" src="{{asset('storage/' . $typology->image)}}" alt="{{$typology->name}}">
-                            </div>
+                        <div class="mb-3">
+                            <img style="max-width: 100%" src="{{asset('storage/' . $typology->image)}}" alt="{{$typology->name}}">
+                        </div>
+                        @endif
+                        @if (count($typology->users) > 0)
+                        <div class="mb-3">
+                            <h3>Lista ristoranti associati</h3>
+                            <ul>
+                                @foreach ($typology->users as $user)
+                                    <li>{{$user->name}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                         @endif
                     </div>
                 </div>

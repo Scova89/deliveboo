@@ -112,8 +112,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group ">
+                                    <p>Tipologie:</p>
+                                    @foreach ($typologies as $typology)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="typologies[]" id="{{$typology->slug}}" value="{{$typology->id}}" {{in_array($typology->id, old("typologies", []))? 'checked' : ''}}>
+                                            <label class="form-check-label" for="{{$typology->slug}}">{{$typology->name}}</label>
+                                        </div>
+
+                                        @endforeach
+                                        @error('typologies')
+                                            <div class="alert alert-danger">{{$message}}</div>
+                                        @enderror
+
+                                </div>
+                        
                         <div class="form-group mb-3 text-center">
-                            <label for="image" class="d-block">Carica immagine del ristorante</label>
+                            <label for="image">Carica immagine del ristorante</label>
                             <img src="" alt="" id="preview" width="100">
                             <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
 
