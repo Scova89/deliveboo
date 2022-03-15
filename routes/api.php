@@ -27,3 +27,4 @@ Route::get('/categorie', 'Api\TypologyController@index');
 Route::get('/categorie/{slug}', 'Api\TypologyController@show');
 
 // Rotte prodotti
+Route::get('/prodotti/{slug}', 'Api\ProductController@show');
