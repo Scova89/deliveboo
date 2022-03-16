@@ -2,17 +2,17 @@
     <div>
         <h4>Scegli una categoria:</h4>
         <div class="box-card">
-            <div v-for="categoria in categorie" :key="categoria">
-                <Card/>
-
-            </div>
+            <Card v-for="categoria in dataShared.categorie" :key="categoria.id" :categoria="categoria"/>
+            
         </div>
     </div>
     
 </template>
 
 <script>
-import Card from './elements/Card.vue'
+import Card from './elements/Card.vue';
+import dataShared from '../dataShared';
+
 
 export default {
     name: 'Home',
@@ -21,14 +21,15 @@ export default {
     },
     data() {
         return{
-            categorie:[]
+            dataShared
         }
     },
     created(){
         axios.get('/api/categorie')
-        .then((response) => {
-        this.categorie = response.data;
-            }).catch( (error)=> {
+            .then((response) => {
+                dataShared.categorie = response.data;
+            })
+            .catch( (error) => {
                 this.$router.push({name: 'page-404'})
             })
     },
@@ -39,7 +40,12 @@ export default {
 <style scoped lang="scss">
     .box-card{
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
+        gap: 10px;
+        > * {
+            width: calc((100% - 40px )/ 5);
+        }
     }
     
 </style>

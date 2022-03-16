@@ -2,10 +2,12 @@
     <header>
         <div class="box">
             <div class="left">
-                <div class="logo">
-                    <img src="https://www.ilcannolo.com/wp-content/uploads/2020/09/food-ico_Tavola-disegno-1.png" alt="DeliveBoo Logo">
-                </div>
-                <div class="title">DeliveBoo</div>
+                <a href="/">
+                    <div class="logo">
+                        <img src="https://www.ilcannolo.com/wp-content/uploads/2020/09/food-ico_Tavola-disegno-1.png" alt="DeliveBoo Logo">
+                    </div>
+                    <div class="title">DeliveBoo</div>
+                </a>
             </div>
             <div class="right">
                 <a href="/login">Area riservata</a>
@@ -33,19 +35,22 @@ header{
         justify-content: space-between;
         .left{
             width: 50%;
-            display: flex;
-            align-items: center;
-            .logo{
-                img{
-                    width: 70px;
+            > a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                .logo{
+                    img{
+                        width: 70px;
+                    }
                 }
-            }
-            .title{
-                color: white;
-                font-size: 25px;
-                font-weight: 700;
-                margin-left: 20px;
-                display: none;
+                .title{
+                    color: white;
+                    font-size: 25px;
+                    font-weight: 700;
+                    margin-left: 20px;
+                    display: none;
+                }
             }
         }
         .right{
@@ -76,8 +81,12 @@ header{
         padding: 30px 80px;
         .box {
             .left {
-                .title {
-                    display: block;
+                display: flex;
+                align-items: center;
+                > a {
+                    .title {
+                        display: block;
+                    }
                 }
             }
         }
