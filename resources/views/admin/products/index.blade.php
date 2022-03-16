@@ -10,9 +10,9 @@
                         <a href="{{route("products.create")}}">
                             <button type="button" class="btn btn-success mb-3">Crea Prodotto</button>
                         </a>
-                        <div class="d-inline ml-2">
+                        {{-- <div class="d-inline ml-2">
                             <input type="text" id="ricerca-input">
-                        </div>
+                        </div> --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -23,7 +23,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <script>
+                                {{-- <script>
                                     let prodotti = @json($products);
 
                                     const inputRicerca = document.getElementById('ricerca-input');
@@ -39,7 +39,7 @@
                                             // ciclare nel file blade sull'array nuovo
                                         }
                                     });
-                                </script>
+                                </script> --}}
 
                                 @foreach ($products as $product)
                                 @if (Auth::id() == $product->user_id && $product->visible)  
