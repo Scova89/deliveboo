@@ -25,3 +25,108 @@
         }   
     }
 }
+
+header{
+    height: 300px;
+    background-color: $mainColor;
+    padding: 30px 10px;
+    .box{
+        display: flex;
+        height: 80px;
+        justify-content: space-between;
+        .left{
+            width: 50%;
+            > a {
+                
+                display: flex;
+                align-items: center;
+                .logo{
+                    img{
+                        width: 70px;
+                    }
+                }
+                .title{
+                    color: white;
+                    font-size: 25px;
+                    font-weight: 700;
+                    margin-left: 20px;
+                    display: none;
+                }
+            }
+        }
+        .right{
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            a{  
+                display: block;
+                min-width: 161px;
+                text-decoration: none;
+                color: black;
+                background-color: white;
+                padding: 15px 30px;
+                border-radius: 30px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                font-size: 16px;
+                font-weight: 600;
+                transition: 0.2s all;
+            }
+            a:hover{
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                color: $mainColor;
+            }
+        }
+    }
+    @media screen and (min-width: 576px) {
+        padding: 30px 80px;
+        .box {
+            .left {
+                display: flex;
+                align-items: center;
+                > a{
+                    .title {
+                        display: block;
+                    }
+                }
+                > nav {
+                    ul{
+                        margin: 0;
+                        list-style: none;
+                        display: flex;
+                        gap: 15px;
+                        a{
+                            color: white;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        
+    }
+}
+
+main{
+    .container-fluid{
+        background-color: white;
+        border-radius: 30px;
+        min-height: 600px;
+        position: relative;
+        top: -100px; 
+        padding: 30px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        margin: 0 15px;
+        max-width: calc(100% - 30px);
+        @media screen and (min-width: 576px) {
+            margin: 0 50px;
+            max-width: calc(100% - 100px);
+        }
+        @media screen and (min-width: 992px) {
+            margin: 0 100px;
+            max-width: calc(100% - 200px);
+        }
+    }
+}
