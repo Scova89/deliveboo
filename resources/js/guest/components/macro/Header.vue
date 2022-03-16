@@ -26,10 +26,11 @@ export default {
 header{
     height: 300px;
     background-color: $mainColor;
-    padding: 30px 80px;
+    padding: 30px 10px;
     .box{
         display: flex;
         height: 80px;
+        justify-content: space-between;
         .left{
             width: 50%;
             display: flex;
@@ -44,14 +45,17 @@ header{
                 font-size: 25px;
                 font-weight: 700;
                 margin-left: 20px;
+                display: none;
             }
         }
         .right{
             width: 50%;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            a{
+            justify-content: flex-end;
+            a{  
+                display: block;
+                min-width: 161px;
                 text-decoration: none;
                 color: black;
                 background-color: white;
@@ -68,8 +72,18 @@ header{
             }
         }
     }
-    @media screen and (max-width: 767px) {
-        padding: 30px 10px;
+    @media screen and (min-width: 576px) {
+        padding: 30px 80px;
+        .box {
+            .left {
+                .title {
+                    display: block;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        
     }
 }
 </style>
