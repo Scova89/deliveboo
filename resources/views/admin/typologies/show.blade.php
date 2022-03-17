@@ -57,6 +57,8 @@
                                 @endforeach
                             </ul>
                         </div>
+                        @else 
+                            <h3>Nessun ristorante associato a questa tipologia</h3>
                         @endif
                     </div>
                 </div>
