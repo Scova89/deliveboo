@@ -1,11 +1,13 @@
 <template>
     <header>
-        <div class="box">
+        <div class="box container-fluid">
             <div class="left">
-                <div class="logo">
-                    <img src="https://www.ilcannolo.com/wp-content/uploads/2020/09/food-ico_Tavola-disegno-1.png" alt="DeliveBoo Logo">
-                </div>
-                <div class="title">DeliveBoo</div>
+                <a href="/">
+                    <div class="logo">
+                        <img src="https://www.ilcannolo.com/wp-content/uploads/2020/09/food-ico_Tavola-disegno-1.png" alt="DeliveBoo Logo">
+                    </div>
+                    <div class="title">DeliveBoo</div>
+                </a>
             </div>
             <div class="right">
                 <a href="/login">Area riservata</a>
@@ -31,21 +33,47 @@ header{
         display: flex;
         height: 80px;
         justify-content: space-between;
+        &.container-fluid {
+            max-width: calc(100% - 30px);
+            @media screen and (min-width: 576px) {
+                margin: 0 auto;
+                max-width: calc(100% - 100px);
+            }
+            @media screen and (min-width: 992px) {
+                margin: 0 auto;
+                max-width: calc(100% - 200px);
+            }
+            @media screen and (min-width: 1200px) {
+                margin: 0 auto;
+                max-width: calc(1200px - 200px);
+            }
+            @media screen and (min-width: 1400px) {
+                margin: 0 auto;
+                max-width: calc(1400px - 20px);
+            }
+            @media screen and (min-width: 1600px) {
+                margin: 0 auto;
+                max-width: calc(1600px - 20px);
+            }
+        }
         .left{
             width: 50%;
-            display: flex;
-            align-items: center;
-            .logo{
-                img{
-                    width: 70px;
+            > a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                .logo{
+                    img{
+                        width: 70px;
+                    }
                 }
-            }
-            .title{
-                color: white;
-                font-size: 25px;
-                font-weight: 700;
-                margin-left: 20px;
-                display: none;
+                .title{
+                    color: white;
+                    font-size: 25px;
+                    font-weight: 700;
+                    margin-left: 20px;
+                    display: none;
+                }
             }
         }
         .right{
@@ -76,8 +104,12 @@ header{
         padding: 30px 80px;
         .box {
             .left {
-                .title {
-                    display: block;
+                display: flex;
+                align-items: center;
+                > a {
+                    .title {
+                        display: block;
+                    }
                 }
             }
         }

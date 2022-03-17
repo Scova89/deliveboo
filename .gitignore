@@ -13,3 +13,4 @@ yarn-error.log
 /public/css
 /public/js
 .DS_Store
+/public/mix-manifest.json
