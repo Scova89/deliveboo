@@ -26,36 +26,14 @@ export default {
 <style scoped lang="scss">
 @import '../../../../sass/_variables.scss';
 header{
-    height: 300px;
+    height: 250px;
     background-color: $mainColor;
     padding: 30px 10px;
     .box{
         display: flex;
         height: 80px;
         justify-content: space-between;
-        &.container-fluid {
-            max-width: calc(100% - 30px);
-            @media screen and (min-width: 576px) {
-                margin: 0 auto;
-                max-width: calc(100% - 100px);
-            }
-            @media screen and (min-width: 992px) {
-                margin: 0 auto;
-                max-width: calc(100% - 200px);
-            }
-            @media screen and (min-width: 1200px) {
-                margin: 0 auto;
-                max-width: calc(1200px - 200px);
-            }
-            @media screen and (min-width: 1400px) {
-                margin: 0 auto;
-                max-width: calc(1400px - 20px);
-            }
-            @media screen and (min-width: 1600px) {
-                margin: 0 auto;
-                max-width: calc(1600px - 20px);
-            }
-        }
+        max-width: 1400px;
         .left{
             width: 50%;
             > a {
@@ -93,6 +71,7 @@ header{
                 font-size: 16px;
                 font-weight: 600;
                 transition: 0.2s all;
+                transform: scale(0.8);
             }
             a:hover{
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -100,8 +79,12 @@ header{
             }
         }
     }
-    @media screen and (min-width: 576px) {
-        padding: 30px 80px;
+}
+@media screen and (min-width: 576px) {
+    header{
+        padding: 30px;
+        height: 300px;
+        transition: 0.5s all;
         .box {
             .left {
                 display: flex;
@@ -112,10 +95,12 @@ header{
                     }
                 }
             }
+            .right{
+                a{
+                    transform: scale(1);
+                }
+            }
         }
-    }
-    @media screen and (min-width: 768px) {
-        
     }
 }
 </style>
