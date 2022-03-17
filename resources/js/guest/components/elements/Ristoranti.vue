@@ -3,7 +3,7 @@
         <button @click="stringify">cerca</button>
         Lista ristoranti:
         <ul>
-            <li v-for="restaurant in restaurants.users" :key="restaurant.id">
+            <li v-for="(restaurant, index) in dataShared.restaurants" :key="index">
                 {{restaurant.name}}
             </li>
         </ul>
@@ -17,18 +17,18 @@ export default {
     name: "Ristoranti",
     data(){
         return{
-            restaurants : [],
+            
             dataShared,
         }
     },
     methods: {
         stringify: function() {
             let temp = dataShared.selectedCategories;
-            console.log(temp);
             axios.get('/api/ristoranti/search/'+temp)
             .then((response)=> {
-                this.restaurants = response.data;
-                log(response.data);
+                dataShared.restaurants = [];
+                dataShared.restaurants = response.data;
+                console.log(response.data);
             })
             .catch((error) =>{
                 this.$router.push({

@@ -22,10 +22,18 @@ class RestaurantController extends Controller
         foreach ($array as $value) {
             $restaurants[] = User::join('typology_user', 'users.id', '=', 'typology_user.user_id')
             ->join('typologies', 'typology_user.typology_id', '=', 'typologies.id')
-            ->where('typologies.name', '=', $value)
+            ->where('typologies.name', '=', $value)->select('users.*')
             ->get();
         }
-        return response()->json($restaurants);
+        $result = [];
+        foreach($restaurants as $arrayValue){
+            foreach ($arrayValue as $user) {
+                $result[] = $user;
+            }
+        }
+        $result = array_unique($result);
+        $result = array_values($result);
+        return response()->json($result);
     }
 
 
