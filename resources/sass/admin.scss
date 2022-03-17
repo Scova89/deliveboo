@@ -61,13 +61,17 @@ header{
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            ul {
+                list-style: none;
+                display: flex;
+                gap: 10px;
+            }
             a{  
                 display: block;
-                min-width: 161px;
                 text-decoration: none;
                 color: black;
                 background-color: white;
-                padding: 15px 30px;
+                padding: 10px 20px;
                 border-radius: 30px;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
                 font-size: 16px;
