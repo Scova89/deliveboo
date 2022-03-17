@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Typology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
@@ -13,17 +14,21 @@ class RestaurantController extends Controller
         $restaurants = User::where('open', true)->get();
         return response()->json($restaurants);
     }
+
+
     public function search($string) 
     {
         $array = explode(',',$string);
-        $temp = User::all();
-        foreach ($temp as $value) {
-            $restaurants[] = Typology::where('name', $value)->with('users')->get();
+        foreach ($array as $value) {
+            $restaurants[] = User::join('typology_user', 'users.id', '=', 'typology_user.user_id')
+            ->join('typologies', 'typology_user.typology_id', '=', 'typologies.id')
+            ->where('typologies.name', '=', $value)
+            ->get();
         }
-        // return response()->json($restaurants);
-        dd($restaurants);
-        return $restaurants;
+        return response()->json($restaurants);
     }
+
+
     public function show($slug)
     {
         $restaurant = User::where('slug', $slug)->with(['typologies', 'products'])->first();
@@ -33,4 +38,6 @@ class RestaurantController extends Controller
         }
         return response()->json($restaurant);
     }
+
+    
 }
