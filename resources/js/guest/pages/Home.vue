@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <h4>Scegli una categoria:</h4>
     <div class="box-card">
       <Card
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Card from "./elements/Card.vue";
+import Card from "../components/elements/Card.vue";
 import dataShared from "../dataShared";
 
 export default {
@@ -45,7 +45,27 @@ export default {
   width: 100%;
   gap: 10px;
   > * {
-    width: calc((100% - 40px) / 5);
+    width: 100%;
+    }
+  @media screen and (min-width: 576px){
+    > * {
+      width: calc((100% - 10px) / 2);
+    }
+  }
+  @media screen and (min-width: 768px){
+    > * {
+      width: calc((100% - 20px) / 3);
+    }
+  }
+  @media screen and (min-width: 992px){
+    > * {
+      width: calc((100% - 30px) / 4);
+    }
+  }
+  @media screen and (min-width: 1200px){
+    > * {
+      width: calc((100% - 40px) / 5);
+    }
   }
 }
 h4 {

@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="box">
+        <div class="box container-fluid">
             <div class="left">
                 <a href="/">
                     <div class="logo">
@@ -33,6 +33,29 @@ header{
         display: flex;
         height: 80px;
         justify-content: space-between;
+        &.container-fluid {
+            max-width: calc(100% - 30px);
+            @media screen and (min-width: 576px) {
+                margin: 0 auto;
+                max-width: calc(100% - 100px);
+            }
+            @media screen and (min-width: 992px) {
+                margin: 0 auto;
+                max-width: calc(100% - 200px);
+            }
+            @media screen and (min-width: 1200px) {
+                margin: 0 auto;
+                max-width: calc(1200px - 200px);
+            }
+            @media screen and (min-width: 1400px) {
+                margin: 0 auto;
+                max-width: calc(1400px - 20px);
+            }
+            @media screen and (min-width: 1600px) {
+                margin: 0 auto;
+                max-width: calc(1600px - 20px);
+            }
+        }
         .left{
             width: 50%;
             > a {
