@@ -1,28 +1,28 @@
 <template>
-  <div :class="isActive ? 'active' : ''" class="single-card" @click="active()">
-    <div class="container-image">
-      <img :src="categoria.image ? 'storage/' + categoria.image : ''" :alt="categoria.name"/>
+    <div :class="isActive ? 'active' : ''" class="single-card" @click="active()">
+        <div class="container-image">
+            <img :src="categoria.image ? 'storage/' + categoria.image : ''" :alt="categoria.name"/>
+        </div>
+        <h5>{{ categoria.name }}</h5>
     </div>
-    <h5>{{ categoria.name }}</h5>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "Card",
-  data() {
-    return {
-      isActive: false,
-    };
-  },
-  props: {
-    categoria: Object,
-  },
-  methods: {
-    active: function () {
-      this.isActive ? (this.isActive = false) : (this.isActive = true);
+    name: "Card",
+    data() {
+        return {
+            isActive: false,
+        };
     },
-  },
+    props: {
+        categoria: Object,
+    },
+    methods: {
+        active: function () {
+            this.isActive ? (this.isActive = false) : (this.isActive = true);
+        },
+    },
 };
 </script>
 
