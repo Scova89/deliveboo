@@ -12,7 +12,8 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome attività <span style="color: red">*</span>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">
+                                Nome attività <span style="color: red">*</span>
                             </label>
 
                             <div class="col-md-6">
@@ -27,7 +28,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">Città <span style="color: red">*</span></label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">
+                                Città <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control" value="Polignano a Mare" required disabled>
@@ -35,7 +38,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo <span style="color: red">*</span></label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">
+                                Indirizzo <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
@@ -49,7 +54,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">Telefono <span style="color: red">*</span></label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">
+                                Telefono <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" maxlength="15" minlength="9">
@@ -63,7 +70,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="iva" class="col-md-4 col-form-label text-md-right">Partita IVA <span style="color: red">*</span></label>
+                            <label for="iva" class="col-md-4 col-form-label text-md-right">
+                                Partita IVA <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="iva" type="text" class="form-control @error('iva') is-invalid @enderror" name="iva" value="{{ old('iva') }}" required autocomplete="iva" minlength="11" maxlength="11" pattern="[0-9]{11}">
@@ -77,7 +86,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail <span style="color: red">*</span></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">
+                                E-Mail <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -91,7 +102,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password <span style="color: red">*</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">
+                                Password <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -105,15 +118,37 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Conferma Password <span style="color: red">*</span></label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
+                                Conferma Password <span style="color: red">*</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
+                        <script type="text/javascript">
+                            function controlloPassword() {
+                                let password1 = document.getElementById('password');
+                                let password2 = document.getElementById('password-confirm');
+
+                                if (password1.value == '' || password2.value == '') {
+                                    alert('Inserire la password in entrambi i campi');
+                                    password1.classList.add('errore');
+                                    password2.classList.add('errore');
+
+                                } else if (password1.value !== password2.value ) {
+                                    alert('Inserire la stessa password in entrambi i campi');
+                                    password1.classList.add('errore');
+                                    password2.classList.add('errore');
+                                }
+                            }
+                        </script>
+
                         <div class="form-group typologies row">
-                                    <p class="col-md-4 col-form-label text-md-right">Tipologie:</p>
+                                    <p class="col-md-4 col-form-label text-md-right">
+                                        Tipologie: <span style="color: red">*</span>
+                                    </p>
                                     <div class="container-typologies col-md-6">
                                         <div>
                                             @foreach ($typologies as $typology)
@@ -125,7 +160,9 @@
                                         </div>
                                     </div>
                                     @error('typologies')
-                                        <div class="alert alert-danger">{{$message}}</div>
+                                        <div class="mt-2 offset-md-4 col-md-6" style="padding-left: 15px; padding-right: 15px;">
+                                            <div class="alert alert-danger">{{$message}}</div>
+                                        </div>    
                                     @enderror
                                 </div>
                         
@@ -159,7 +196,7 @@
                         @enderror
                         <div class="form-group row mb-0 mt-5">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onclick="controlloPassword()">
                                     Registrati
                                 </button>
                             </div>
