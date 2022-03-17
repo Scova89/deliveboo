@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 class RestaurantController extends Controller
 {
     public function index(){
-        $restaurants = User::all();
+        $restaurants = User::where('open', true)->get();
         return response()->json($restaurants);
     }
+    // public function search()
+    // {
+    //     $restaurants = User::where('open', true)->get();
+    //     return response()->json($restaurants);
+    // }
     public function show($slug)
     {
         $restaurant = User::where('slug', $slug)->with(['typologies', 'products'])->first();

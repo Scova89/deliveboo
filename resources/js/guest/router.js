@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 import Home from './pages/Home.vue';
 import PageNotFound from "./pages/PageNotFound.vue";
-import Ristoranti from "./pages/Ristoranti.vue";
+import Ristoranti from "./components/elements/Ristoranti.vue";
 
 const router = new VueRouter({
     mode: "history",
