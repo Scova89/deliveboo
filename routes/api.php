@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Rotte ristoranti
 Route::get('/ristoranti', 'Api\RestaurantController@index');
 Route::get('/ristoranti/{slug}', 'Api\RestaurantController@show');
-// Route::get('/ristoranti/search', 'Api\RestaurantController@search');
+Route::get('/ristoranti/search/{slug}', 'Api\RestaurantController@search');
 
 // Rotte categorie
 Route::get('/categorie', 'Api\TypologyController@index');
