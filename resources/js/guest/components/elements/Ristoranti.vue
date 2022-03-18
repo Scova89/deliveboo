@@ -4,7 +4,8 @@
         Lista ristoranti:
         <ul>
             <li v-for="(restaurant, index) in dataShared.restaurants" :key="index">
-                {{restaurant.name}}
+                
+                <router-link :to="{name: 'ristorante', params: {slug: restaurant.slug, title: restaurant.name}} ">{{restaurant.name}}</router-link>
             </li>
         </ul>
     </div>
@@ -28,7 +29,6 @@ export default {
             .then((response)=> {
                 dataShared.restaurants = [];
                 dataShared.restaurants = response.data;
-                console.log(response.data);
             })
             .catch((error) =>{
                 this.$router.push({

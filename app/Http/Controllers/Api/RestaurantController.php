@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Typology;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
@@ -46,6 +43,4 @@ class RestaurantController extends Controller
         }
         return response()->json($restaurant);
     }
-
-    
 }
