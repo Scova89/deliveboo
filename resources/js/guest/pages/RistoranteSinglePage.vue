@@ -68,31 +68,50 @@ export default {
             localStorage.clear();
         },
         addCart: function(product) {
-            let temp = product;
+            let array = {quantity: 1, id: product.id, name: product.name, price: product.price};
+            let index = 0;
+
             if (dataShared.cart.length > 0) {
-                for (let i = 0; i < dataShared.cart.length; i++) {
-                    if(dataShared.cart.includes(temp.id)) {
-                        console.log(dataShared.cart.includes(temp.id));
-                        if (dataShared.cart[i].quantity > 0) {
-                            dataShared.cart[i].quantity++;
-                            console.log(dataShared.cart);
-                        } else if (!dataShared.cart[i].quantity) {
-                            console.log(dataShared.cart[i].quantity);
-                            dataShared.cart[i].quantity = 1;
-                            console.log(dataShared.cart);
-                        }
-                    } 
-                    // else {
-                    //     dataShared.cart.push(temp);
-                    //     dataShared.cart[i].quantity;
-                    //     console.log(dataShared.cart);
-                    // }
-                    
+                dataShared.cart.forEach(element => {
+                    if(element.id == array.id){
+                        element.quantity++;
+                        index = element.id;
+                    }
+                });
+                if(index != array.id){
+                    dataShared.cart.push(array);
                 }
             } else {
-                dataShared.cart.push(temp);
-                localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
+                dataShared.cart.push(array);
             }
+
+            //####### di ferdinando #########
+            
+            // let temp = product;
+            // if (dataShared.cart.length > 0) {
+            //     for (let i = 0; i < dataShared.cart.length; i++) {
+            //         if(dataShared.cart.includes(temp.id)) {
+            //             console.log(dataShared.cart.includes(temp.id));
+            //             if (dataShared.cart[i].quantity > 0) {
+            //                 dataShared.cart[i].quantity++;
+            //                 console.log(dataShared.cart);
+            //             } else if (!dataShared.cart[i].quantity) {
+            //                 console.log(dataShared.cart[i].quantity);
+            //                 dataShared.cart[i].quantity = 1;
+            //                 console.log(dataShared.cart);
+            //             }
+            //         } 
+            //         // else {
+            //         //     dataShared.cart.push(temp);
+            //         //     dataShared.cart[i].quantity;
+            //         //     console.log(dataShared.cart);
+            //         // }
+                    
+            //     }
+            // } else {
+            //     dataShared.cart.push(temp);
+            //     localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
+            // }
         },
         removeCart: function(product) {
             var temp = product;
