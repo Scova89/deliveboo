@@ -10,6 +10,7 @@
                 </a>
             </div>
             <div class="right">
+                <CartIcon/>
                 <a href="/login">Area riservata</a>
             </div>
         </div>
@@ -17,8 +18,14 @@
 </template>
 
 <script>
+import CartIcon from '../elements/CartIcon.vue'
+
 export default {
     name: 'Header',
+    components: {
+        CartIcon,
+
+    }
 
 }
 </script>

@@ -8,6 +8,7 @@ import PageNotFound from "./pages/PageNotFound.vue";
 import Ristoranti from "./components/elements/Ristoranti.vue";
 import RistoranteSinglePage from "./pages/RistoranteSinglePage.vue";
 import Prodotto from "./pages/Prodotto.vue";
+import Carrello from "./pages/Carrello.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -33,12 +34,11 @@ const router = new VueRouter({
             path: "/prodotto/:slug",
             name: "prodotto",
             component: Prodotto,
-        },
+        }, 
         {
-            path: "/error404",
-            name: "page-404",
-            component: PageNotFound,
-            meta: { title: 'Error 404' }
+            path: "/carrello",
+            name: "carrello",
+            component: Carrello,
         },
         {
             path: "*",

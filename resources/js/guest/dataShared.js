@@ -4,5 +4,6 @@ export default Vue.observable({
     categorie: [],
     selectedCategories: [],
     restaurants: [],
+    cart: [],
 });
 

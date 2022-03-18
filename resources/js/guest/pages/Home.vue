@@ -48,8 +48,10 @@ export default {
         }
     },
     created() {
-        axios
-        .get("/api/categorie")
+        // localStorage.setItem();
+        // console.log(localStorage);
+
+        axios.get("/api/categorie")
         .then((response) => {
             dataShared.categorie = response.data;
         })
