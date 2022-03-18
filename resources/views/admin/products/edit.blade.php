@@ -86,4 +86,70 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        let nameControll = false;
+        let descriptionControll = false;
+        let intoleranceControll = false;
+        let priceControll = false;
+        
+        let save_button = document.getElementById('save-button');
+        save_button.addEventListener('click', function() {
+            controlloDescription();
+            controlloName();
+            controlloIntolerance();
+            controlloPrice();
+
+            if (descriptionControll == false || nameControll == false || intoleranceControll == false || priceControll == false) {
+                event.preventDefault();
+            }
+        });
+
+        function controlloName() {
+            nameControll = false;
+
+
+            let name = document.getElementById('name');
+            if (name.value == '') {
+                nameControll = false;
+                document.getElementById('name-errore').innerHTML =
+                    `<div class="alert alert-danger">E' obbligatorio inserire un nome.</div>`;
+            } else {
+                document.getElementById('name-errore').innerHTML = null;
+                nameControll = true;
+
+            }
+        }
+
+        function controlloDescription() {
+            descriptionControll = false;
+
+            let description = document.getElementById('description');
+            if (description.value == '') {
+                descriptionControll = false;
+                document.getElementById('description-errore').innerHTML =
+                    `<div class="alert alert-danger">Questo campo non può essere vuoto</div>`;
+            } else {
+                document.getElementById('description-errore').innerHTML = null;
+                descriptionControll = true;
+
+            }
+        }
+
+        function controlloPrice() {
+            priceControll = false;
+            let price = document.getElementById('price');
+            if (price.value == '') {
+                priceControll = false;
+                document.getElementById('price-errore').innerHTML =
+                    `<div class="alert alert-danger">Questo campo non può essere vuoto</div>`;
+            } else if (isNaN(price.value)) {
+                priceControll = false;
+                document.getElementById('phone-errore').innerHTML =
+                    `<div class="alert alert-danger">Il prezzo inserito non è valido.</div>`;
+            } else {
+                document.getElementById('price-errore').innerHTML = null;
+                phoneControll = true;
+            }
+        }
+    </script>
 @endsection

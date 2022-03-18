@@ -92,25 +92,21 @@
     <script type="text/javascript">
         let nameControll = false;
         let descriptionControll = false;
-        let intoleranceControll = false;
         let priceControll = false;
         
         let save_button = document.getElementById('save-button');
         save_button.addEventListener('click', function() {
             controlloDescription();
             controlloName();
-            controlloIntolerance();
             controlloPrice();
 
-            if (descriptionControll == false || nameControll == false || intoleranceControll == false || priceControll == false) {
+            if (descriptionControll == false || nameControll == false || priceControll == false) {
                 event.preventDefault();
             }
         });
 
         function controlloName() {
             nameControll = false;
-
-
             let name = document.getElementById('name');
             if (name.value == '') {
                 nameControll = false;
@@ -134,21 +130,6 @@
             } else {
                 document.getElementById('description-errore').innerHTML = null;
                 descriptionControll = true;
-
-            }
-        }
-
-        function controlloIntolerance() {
-            intoleranceControll = false;
-
-            let intolerance = document.getElementById('intolerance');
-            if (intolerance.value == '') {
-                intoleranceControll = false;
-                document.getElementById('intolerance-errore').innerHTML =
-                    `<div class="alert alert-danger">Questo campo non può essere vuoto</div>`;
-            } else {
-                document.getElementById('intolerance-errore').innerHTML = null;
-                intoleranceControll = true;
 
             }
         }
