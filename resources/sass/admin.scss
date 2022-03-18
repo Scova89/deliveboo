@@ -14,7 +14,7 @@
     .container-typologies {
         padding-left: 15px;
         padding-right: 15px;
-        >div{
+        >div:first-child{
             width: 100%;
             height: 200px;
             overflow-y: auto;
@@ -23,6 +23,18 @@
             padding: 5px 10px;
             border-radius: 5px;
         }   
+    }
+}
+
+#password {
+    &.errore{
+        border: 1px solid red;
+    }
+}
+
+#password-confirm {
+    &.errore{
+        border: 1px solid red;
     }
 }
 
