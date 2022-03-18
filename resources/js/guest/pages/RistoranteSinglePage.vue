@@ -3,7 +3,7 @@
         <div class="info-ristorante">
             <h4>{{ristorante.name}}</h4>
             <div v-if="ristorante.image" class="img-box" style="width: 100%">
-                <img :src="ristorante.image" :alt="ristorante.name">
+                <img :src="ristorante.image ? 'storage/' + ristorante.image : ''" :alt="ristorante.name">
             </div>
             <h5>Informazioni utili:</h5>
             <ul>

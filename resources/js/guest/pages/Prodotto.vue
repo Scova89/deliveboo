@@ -2,7 +2,7 @@
     <div>
         <h4>{{prodotto.name}}</h4>
         <div v-if="prodotto.image" class="img-box" style="width: 100%">
-            <img :src="prodotto.image" :alt="prodotto.name">
+            <img :src="prodotto.image ? 'storage/' + prodotto.image : ''" :alt="prodotto.name">
         </div>
         <p>Descrizione: {{prodotto.description}}</p>
         <div>Intolleranze: {{prodotto.intolerance}}</div>

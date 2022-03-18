@@ -19,7 +19,7 @@ class RestaurantController extends Controller
         foreach ($array as $value) {
             $restaurants[] = User::join('typology_user', 'users.id', '=', 'typology_user.user_id')
             ->join('typologies', 'typology_user.typology_id', '=', 'typologies.id')
-            ->where('typologies.name', '=', $value)->select('users.*')
+            ->where('typologies.name', '=', $value)->where('users.open', true)->select('users.*')
             ->get();
         }
         $result = [];
