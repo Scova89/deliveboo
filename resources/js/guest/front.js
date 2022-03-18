@@ -37,3 +37,13 @@ const app = new Vue({
     render: h => h(App),
     router
 });
+
+router.beforeEach((to, from, next) => {
+    let temp = `DeliveBoo - ${to.meta.title}`
+    if (to.meta.title) {
+        document.title = temp
+    } else {
+        document.title = `DeliveBoo - ${to.params.title}`
+    }
+    next()
+})

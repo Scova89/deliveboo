@@ -5,7 +5,9 @@ Vue.use(VueRouter);
 
 import Home from './pages/Home.vue';
 import PageNotFound from "./pages/PageNotFound.vue";
-import Ristoranti from "./pages/Ristoranti.vue";
+import Ristoranti from "./components/elements/Ristoranti.vue";
+import RistoranteSinglePage from "./pages/RistoranteSinglePage.vue";
+import Prodotto from "./pages/Prodotto.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -21,6 +23,22 @@ const router = new VueRouter({
             name: "ristoranti",
             component: Ristoranti,
             meta: { title: 'Ristoranti' }
+        },
+        {
+            path: "/ristoranti/:slug",
+            name: "ristorante",
+            component: RistoranteSinglePage,
+        },
+        {
+            path: "/prodotto/:slug",
+            name: "prodotto",
+            component: Prodotto,
+        },
+        {
+            path: "/error404",
+            name: "page-404",
+            component: PageNotFound,
+            meta: { title: 'Error 404' }
         },
         {
             path: "*",
