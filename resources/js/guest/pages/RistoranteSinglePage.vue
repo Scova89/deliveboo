@@ -68,9 +68,31 @@ export default {
             localStorage.clear();
         },
         addCart: function(product) {
-            var temp = product;
-            dataShared.cart.push(temp);
-            localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
+            let temp = product;
+            if (dataShared.cart.length > 0) {
+                for (let i = 0; i < dataShared.cart.length; i++) {
+                    if(dataShared.cart.includes(temp.id)) {
+                        console.log(dataShared.cart.includes(temp.id));
+                        if (dataShared.cart[i].quantity > 0) {
+                            dataShared.cart[i].quantity++;
+                            console.log(dataShared.cart);
+                        } else if (!dataShared.cart[i].quantity) {
+                            console.log(dataShared.cart[i].quantity);
+                            dataShared.cart[i].quantity = 1;
+                            console.log(dataShared.cart);
+                        }
+                    } 
+                    // else {
+                    //     dataShared.cart.push(temp);
+                    //     dataShared.cart[i].quantity;
+                    //     console.log(dataShared.cart);
+                    // }
+                    
+                }
+            } else {
+                dataShared.cart.push(temp);
+                localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
+            }
         },
         removeCart: function(product) {
             var temp = product;
