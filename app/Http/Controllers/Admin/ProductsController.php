@@ -14,9 +14,9 @@ class ProductsController extends Controller
 
     protected $validationRule = [
         "name" => "required|string|max:100",
-        "description" => "required",
+        "description" => "required|string",
         "price" => "required|numeric",
-        "intolerance" => "nullable",
+        "intolerance" => "required|string",
         "purchasable" => 'nullable',
         "image" => "nullable|max:2048|mimes:jpeg,bpm,png,jpg,webp",
     ];
