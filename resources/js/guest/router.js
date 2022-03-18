@@ -28,13 +28,11 @@ const router = new VueRouter({
             path: "/ristoranti/:slug",
             name: "ristorante",
             component: RistoranteSinglePage,
-            meta: { title: 'ristorante da fixare' }
         },
         {
             path: "/prodotto/:slug",
             name: "prodotto",
             component: Prodotto,
-            meta: { title: 'Prodotto .name' }
         },
         {
             path: "/error404",

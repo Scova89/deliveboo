@@ -6,6 +6,7 @@
         </div>
         <p>Descrizione: {{prodotto.description}}</p>
         <div>Intolleranze: {{prodotto.intolerance}}</div>
+        <div>Prezzo: {{prodotto.price}} €</div>
     </div>
 </template>
 

@@ -32,6 +32,7 @@ export default {
 .single-card {
     display: flex;
     flex-direction: column;
+    padding: 5px;
     .container-image {
         aspect-ratio: 16 / 9;
         border-radius: 12px;
@@ -58,6 +59,7 @@ export default {
         text-align: center;
         margin-top: 10px;
         color: rgba(0, 0, 0, 0.7);
+        text-transform: capitalize;
     }
     &.active {
         .container-image {

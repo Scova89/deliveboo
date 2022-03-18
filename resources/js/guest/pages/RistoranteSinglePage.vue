@@ -20,7 +20,7 @@
         <div class="lista-prodotti">
             <h5>Lista prodotti:</h5>
             <ul v-for="product in ristorante.products" :key="product.id">
-                <li v-if="product.visible && product.purchasable"><router-link :to="{name: 'prodotto', params: {slug: product.slug, title: product.name}} ">{{product.name}}</router-link></li>
+                <li v-if="product.visible && product.purchasable"><router-link :to="{name: 'prodotto', params: {slug: product.slug, title: product.name}} ">{{product.name}} prezzo: {{product.price}} €</router-link></li>
             </ul>
         </div>
     </div>
