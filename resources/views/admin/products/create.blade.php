@@ -147,7 +147,7 @@
                     `<div class="alert alert-danger">Il prezzo inserito non è valido.</div>`;
             } else {
                 document.getElementById('price-errore').innerHTML = null;
-                phoneControll = true;
+                priceControll = true;
             }
         }
     </script>
