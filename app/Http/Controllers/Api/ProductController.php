@@ -10,8 +10,7 @@ class ProductController extends Controller
 {
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->first();
-        // 404
+        $product = Product::where('slug', $slug)->where('purchasable', '1')->where('visible', '1')->first();
         if (empty($product)) {
             return response()->json(["message" => "Prodotto non trovato"], 404);
         }

@@ -1,5 +1,5 @@
 <template>
-    <div :class="isActive ? 'active' : ''" class="single-card col-lg-2 col-md-4 col-sm-6 col-12" @click="active()">
+    <div :class="isActive ? 'active' : ''" class="single-card col-lg-2 col-md-4 col-sm-6 col-12" @click="active(), $emit('search', categoria.name)">
         <div class="container-image">
             <img :src="categoria.image ? 'storage/' + categoria.image : ''" :alt="categoria.name"/>
         </div>
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 export default {
     name: "Card",
     data() {
@@ -31,6 +32,7 @@ export default {
 .single-card {
     display: flex;
     flex-direction: column;
+    padding: 5px;
     .container-image {
         aspect-ratio: 16 / 9;
         border-radius: 12px;
@@ -57,6 +59,7 @@ export default {
         text-align: center;
         margin-top: 10px;
         color: rgba(0, 0, 0, 0.7);
+        text-transform: capitalize;
     }
     &.active {
         .container-image {
