@@ -25,12 +25,6 @@ const router = new VueRouter({
             meta: { title: 'Ristoranti' }
         },
         {
-            path: "*",
-            name: "page-404",
-            component: PageNotFound,
-            meta: { title: 'Error 404' }
-        },
-        {
             path: "/ristoranti/:slug",
             name: "ristorante",
             component: RistoranteSinglePage,
@@ -41,6 +35,18 @@ const router = new VueRouter({
             name: "prodotto",
             component: Prodotto,
             meta: { title: 'Prodotto .name' }
+        },
+        {
+            path: "/error404",
+            name: "page-404",
+            component: PageNotFound,
+            meta: { title: 'Error 404' }
+        },
+        {
+            path: "*",
+            name: "page-404",
+            component: PageNotFound,
+            meta: { title: 'Error 404' }
         },
     ],
     scrollBehavior() {
