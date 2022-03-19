@@ -78,7 +78,7 @@ header{
                 font-size: 16px;
                 font-weight: 600;
                 transition: 0.2s all;
-                transform: scale(0.8);
+                transform: scale(0.8); // a che serve?
             }
             a:hover{
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
