@@ -48,7 +48,6 @@ export default {
 		},
 		addCart: function(product) {
             product.quantity++;
-			this.cartActive = true;
 			localStorage.setItem('cart', JSON.stringify(dataShared.cart));
         },
 
