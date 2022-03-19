@@ -88,15 +88,22 @@ export default {
             }
         },
 
-
-
-
-
-
         removeCart: function(product) {
-            var temp = product;
-            dataShared.cart.pop(temp);
-            localStorage.setItem('cart', JSON.stringify(dataShared.cart));
+            let array = {quantity: 1, id: product.id, name: product.name, price: product.price};
+
+            dataShared.cart.forEach((element, index) => {
+                console.log(element);
+                if(element.id == array.id && element.quantity == 1){
+                    dataShared.cart.splice(index, 1);
+                    console.log('2');
+                    localStorage.setItem('cart', JSON.stringify(dataShared.cart));
+                } else if(element.id == array.id && element.quantity > 1)
+                {
+                    element.quantity--;
+                    localStorage.setItem('cart', JSON.stringify(dataShared.cart));
+                    console.log('3');
+                }
+            });
         },
         clearCart: function (){
             localStorage.clear();
