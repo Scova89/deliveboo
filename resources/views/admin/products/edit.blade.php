@@ -19,6 +19,8 @@
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
+                            <div class="mt-2" id="name-errore" ></div>
+
                             <div class="form-group">
                                 <label for="description">Descrizione prodotto</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Inserisci la descrizione del prodotto" required>{{old('description') ?? $product->description}}</textarea>
@@ -26,6 +28,8 @@
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
+                            <div class="mt-2" id="description-errore" ></div>
+
                             <div class="form-group">
                                 <label for="intolerance">Intolleranze alimentari del prodotto</label>
                                 <textarea class="form-control @error('intolerance') is-invalid @enderror" id="intolerance" name="intolerance" rows="3" placeholder="Inserisci le intolleranze" >{{old('intolerance') ?? $product->intolerance}}</textarea>
@@ -40,6 +44,7 @@
                                 <div class="alert alert-danger mt-3">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="mt-2" id="price-errore" ></div>
                             
                             <div class="form-group ">
                                 @php
@@ -79,35 +84,31 @@
                             @error('image')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
-                            <button type="submit" class="btn btn-primary">Salva</button>
+                            <button type="submit" class="btn btn-primary" id="save-button">Salva</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+        <script type="text/javascript">
         let nameControll = false;
         let descriptionControll = false;
-        let intoleranceControll = false;
         let priceControll = false;
         
         let save_button = document.getElementById('save-button');
         save_button.addEventListener('click', function() {
             controlloDescription();
             controlloName();
-            controlloIntolerance();
             controlloPrice();
 
-            if (descriptionControll == false || nameControll == false || intoleranceControll == false || priceControll == false) {
+            if (descriptionControll == false || nameControll == false || priceControll == false) {
                 event.preventDefault();
             }
         });
 
         function controlloName() {
             nameControll = false;
-
-
             let name = document.getElementById('name');
             if (name.value == '') {
                 nameControll = false;
@@ -148,7 +149,7 @@
                     `<div class="alert alert-danger">Il prezzo inserito non è valido.</div>`;
             } else {
                 document.getElementById('price-errore').innerHTML = null;
-                phoneControll = true;
+                priceControll = true;
             }
         }
     </script>
