@@ -1,15 +1,17 @@
 <template>
     <div class="app">
         <Header/>
-        <Main/>
+        <Main v-if="!dataShared.checkout"/>
+        <MainCheckout v-else/>
         <Footer/>
     </div>
 </template>
 
 <script>
-
+import dataShared from './dataShared.js'
 import Header from './components/macro/Header.vue'
 import Main from './components/macro/Main.vue'
+import MainCheckout from './components/macro/MainCheckout.vue'
 import Footer from './components/macro/Footer.vue'
 
 export default {
@@ -17,7 +19,22 @@ export default {
     components: {
         Header,
         Main,
-        Footer
+        Footer,
+        MainCheckout,
+    },
+    data() {
+        return {
+            dataShared,
+        }
+    },
+    mounted() {
+        window.onpopstate = function() {
+            dataShared.checkout = false;
+        };
+    },
+    created() {
+        dataShared.cart = JSON.parse(localStorage.getItem('cart')) != null ? JSON.parse(localStorage.getItem('cart')) : [];
+        console.log(dataShared.cart);
     },
 }
 </script>

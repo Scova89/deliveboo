@@ -112,8 +112,7 @@ export default {
     created() {
         dataShared.selectedCategories = [];
 
-        dataShared.cart = JSON.parse(localStorage.getItem('cart')) != null ? JSON.parse(localStorage.getItem('cart')) : [];
-        console.log(dataShared.cart);
+        
 
         axios.get(`/api/ristoranti/${this.$route.params.slug}`)
         .then((response) => {

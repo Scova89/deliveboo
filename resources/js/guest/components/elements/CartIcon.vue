@@ -9,11 +9,11 @@
                 </router-link>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
+import dataShared from '../../dataShared';
 export default {
     name: 'CartIcon',
     data() {
@@ -24,7 +24,7 @@ export default {
     methods: {
         cartPopup: function () {
             this.cartActive ? this.cartActive = false : this.cartActive = true;  
-        }
+        },
     }
 }
 </script>
