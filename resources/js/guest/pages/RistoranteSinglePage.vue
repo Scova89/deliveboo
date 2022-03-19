@@ -64,62 +64,50 @@ export default {
         }
     },
     methods: {
-        clearCart: function (){
-            localStorage.clear();
-        },
         addCart: function(product) {
             let array = {quantity: 1, id: product.id, name: product.name, price: product.price};
             let index = 0;
-
-            if (dataShared.cart.length > 0) {
+            
+            if(dataShared.cart[0] != null) {
+                console.log(dataShared.cart);
                 dataShared.cart.forEach(element => {
                     if(element.id == array.id){
                         element.quantity++;
                         index = element.id;
+                        localStorage.setItem('cart', JSON.stringify(dataShared.cart));
                     }
                 });
                 if(index != array.id){
                     dataShared.cart.push(array);
+                    localStorage.setItem('cart', JSON.stringify(dataShared.cart));
                 }
             } else {
-                dataShared.cart.push(array);
+                dataShared.cart[0] = array;
+                console.log(dataShared.cart);
+                localStorage.setItem('cart', JSON.stringify(dataShared.cart));
             }
-
-            //####### di ferdinando #########
-            
-            // let temp = product;
-            // if (dataShared.cart.length > 0) {
-            //     for (let i = 0; i < dataShared.cart.length; i++) {
-            //         if(dataShared.cart.includes(temp.id)) {
-            //             console.log(dataShared.cart.includes(temp.id));
-            //             if (dataShared.cart[i].quantity > 0) {
-            //                 dataShared.cart[i].quantity++;
-            //                 console.log(dataShared.cart);
-            //             } else if (!dataShared.cart[i].quantity) {
-            //                 console.log(dataShared.cart[i].quantity);
-            //                 dataShared.cart[i].quantity = 1;
-            //                 console.log(dataShared.cart);
-            //             }
-            //         } 
-            //         // else {
-            //         //     dataShared.cart.push(temp);
-            //         //     dataShared.cart[i].quantity;
-            //         //     console.log(dataShared.cart);
-            //         // }
-                    
-            //     }
-            // } else {
-            //     dataShared.cart.push(temp);
-            //     localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
-            // }
         },
+
+
+
+
+
+
         removeCart: function(product) {
             var temp = product;
             dataShared.cart.pop(temp);
-            localStorage.setItem('Cart', JSON.stringify(dataShared.cart));
+            localStorage.setItem('cart', JSON.stringify(dataShared.cart));
+        },
+        clearCart: function (){
+            localStorage.clear();
         },
     },
     created() {
+        dataShared.selectedCategories = [];
+
+        dataShared.cart = JSON.parse(localStorage.getItem('cart')) != null ? JSON.parse(localStorage.getItem('cart')) : [];
+        console.log(dataShared.cart);
+
         axios.get(`/api/ristoranti/${this.$route.params.slug}`)
         .then((response) => {
             this.ristorante = response.data;
