@@ -34,7 +34,6 @@ export default {
     },
     created() {
         dataShared.cart = JSON.parse(localStorage.getItem('cart')) != null ? JSON.parse(localStorage.getItem('cart')) : [];
-        console.log(dataShared.cart);
     },
 }
 </script>

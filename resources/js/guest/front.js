@@ -32,6 +32,9 @@ import App from './App.vue';
 
 import router from "./router";
 
+import vClickOutside from 'v-click-outside'
+
+
 const app = new Vue({
     el: '#app',
     render: h => h(App),
@@ -47,3 +50,5 @@ router.beforeEach((to, from, next) => {
     }
     next()
 })
+
+Vue.use(vClickOutside)

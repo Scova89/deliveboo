@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="right">
-                <CartIcon/>
+                <CartIcon :key="dataShared.key"/>
                 <a href="/login">Area riservata</a>
             </div>
         </div>
@@ -19,9 +19,15 @@
 
 <script>
 import CartIcon from '../elements/CartIcon.vue'
+import dataShared from '../../dataShared.js'
 
 export default {
     name: 'Header',
+    data() {
+        return {
+            dataShared,
+        }
+    },
     components: {
         CartIcon,
 

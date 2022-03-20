@@ -49,7 +49,6 @@ export default {
     },
     created() {
         // localStorage.setItem();
-        // console.log(localStorage);
 
         axios.get("/api/categorie")
         .then((response) => {

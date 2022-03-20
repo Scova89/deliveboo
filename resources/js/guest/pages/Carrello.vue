@@ -1,30 +1,40 @@
-<template>
+<template :key="dataShared.key">
     <div class="cart-container">
-        <div class="box left col-12 col-lg-4">
-            <ul>
-                <li v-for="(product, index) in dataShared.cart" :key="index">
-                    <div class="name col-7">
-                        {{product.name}}
-                    </div>
-                    <div class="keys col-3">
-                        <i class="fas fa-plus" @click="addCart(product)"></i>
-                        <span class="quantity">x{{product.quantity}}</span>
-                        <i class="fas fa-minus" @click="removeCart(product)"></i>
-                    </div>
-                    <div class="price col-2">
-                        {{price(product)}} €
-                    </div>
-                </li>
-            </ul>
-            <div class="total">
-                <div>Totale:</div>
-                <div>{{total()}} €</div>
+        <div class="wrapper col-12 col-lg-5">
+            <div class="box left">
+                <div class="empty" v-if="dataShared.cart.length == 0">Il carrello è vuoto</div>
+                <ul>
+                    <li v-if="dataShared.cart.length != 0">
+                        <div class="head col-7">Prodotto</div>
+                        <div class="head col-3">Quantità</div>
+                        <div class="head col-2">Totale</div>
+                    </li>
+                    <li v-for="(product, index) in dataShared.cart" :key="index">
+                        <div class="name col-7">
+                            {{product.name}}
+                        </div>
+                        <div class="keys col-3">
+                            <div><i class="fas fa-plus" @click="addCart(product)"></i></div>
+                            <span class="quantity">x{{product.quantity}}</span>
+                            <div><i class="fas fa-minus" @click="removeCart(product)"></i></div>
+                        </div>
+                        <div class="price col-2">
+                            {{price(product)}} €
+                        </div>
+                    </li>
+                </ul>
+                <div class="total">
+                    <div>Totale:</div>
+                    <div>{{total()}} €</div>
+                    
+                </div>
+
+            </div>
+        </div>
+        <div class="wrapper col-12 col-lg-7">
+            <div class="box right">
                 
             </div>
-
-        </div>
-        <div class="box right col-12 col-lg-7">
-
         </div>
     </div>
 </template>
@@ -51,43 +61,22 @@ export default {
             return total;
         },
         addCart: function(product) {
-            let array = {quantity: 1, id: product.id, name: product.name, price: product.price};
-            let index = 0;
-            
-            if(dataShared.cart[0] != null) {
-                console.log(dataShared.cart);
-                dataShared.cart.forEach(element => {
-                    if(element.id == array.id){
-                        element.quantity++;
-                        index = element.id;
-                        localStorage.setItem('cart', JSON.stringify(dataShared.cart));
-                    }
-                });
-                if(index != array.id){
-                    dataShared.cart.push(array);
-                    localStorage.setItem('cart', JSON.stringify(dataShared.cart));
-                }
-            } else {
-                dataShared.cart[0] = array;
-                console.log(dataShared.cart);
-                localStorage.setItem('cart', JSON.stringify(dataShared.cart));
-            }
+            product.quantity++;
+			localStorage.setItem('cart', JSON.stringify(dataShared.cart));
         },
 
         removeCart: function(product) {
-            let array = {quantity: 1, id: product.id, name: product.name, price: product.price};
+            let array = {quantity: 1, id: product.id, name: product.name, price: product.price, user_id: product.user_id};
+            dataShared.key++;
 
             dataShared.cart.forEach((element, index) => {
-                console.log(element);
                 if(element.id == array.id && element.quantity == 1){
                     dataShared.cart.splice(index, 1);
-                    console.log('2');
                     localStorage.setItem('cart', JSON.stringify(dataShared.cart));
                 } else if(element.id == array.id && element.quantity > 1)
                 {
                     element.quantity--;
                     localStorage.setItem('cart', JSON.stringify(dataShared.cart));
-                    console.log('3');
                 }
             });
         },
@@ -105,57 +94,87 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 50px;
-    .box{
-        background-color: white;
-        border-radius: 15px;
-        min-height: 600px;
-        padding: 30px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    }
-    .left{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-right: 20px;
-        ul{
-            width: 100%;
-            padding: 0;
-            li{
-                display: flex;
-                margin: 5px 0px;
-                >div{
-                    padding: 0;
+    .wrapper{
+        .box{
+            background-color: white;
+            border-radius: 15px;
+            min-height: 600px;
+            padding: 10px 30px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .empty{
+                text-align: center;
+                font-size: 30px;
+                font-weight: 500;
+                padding: 50px 0px;
+            }
+            ul{
+                width: 100%;
+                padding: 0;
+                .head{
+                    font-weight: 600;
+                    font-size: 20px;
                 }
-                .name{
-                    overflow: hidden;
-                    height: 20px;
+                .head:nth-child(1){
+                    text-align: start;
                 }
-                .price{
-                    text-align: right;
+                .head:nth-child(2){
+                    text-align: center;
                 }
-                .keys{
+                .head:nth-child(3){
+                    text-align: end;
+                }
+                li{
                     display: flex;
-                    justify-content: flex-end;
-                    .quantity{
-                        padding: 0px 5px;
-                        font-weight: 600;
+                    margin: 15px 0px;
+                    >div{
+                        padding: 0;
                     }
-                    i{
-                        padding: 5px;
-                        cursor: pointer;
-                        border-radius: 20px;
-                        color: white;
-                        background-color: $mainColor;
-                        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                    .name{
+                        overflow: hidden;
+                        height: 30px;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;
+                    }
+                    .price{
+                        text-align: right;
+                    }
+                    .keys{
+                        display: flex;
+                        justify-content: flex-end;
+                        .quantity{
+                            padding: 0px 10px;
+                            font-size: 20px;
+                        }
+                        div{
+                            height: 100%;
+                            i{
+                                padding: 7px;
+                                cursor: pointer;
+                                border-radius: 20px;
+                                color: white;
+                                background-color: $mainColor;
+                                box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px;
+                            }
+                        }
+                        
                     }
                 }
             }
-        }
-        .total{
-            height: 40px;
-            font-size: 20px;
-            display: flex;
-            justify-content: space-between;
+            .total{
+                height: 40px;
+                font-size: 20px;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                border-top: 2px solid black;
+                padding-top: 5px;
+            }
         }
     }
 }
