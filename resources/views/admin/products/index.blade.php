@@ -10,6 +10,9 @@
                         <a href="{{route("products.create")}}">
                             <button type="button" class="btn btn-success mb-3">Crea Prodotto</button>
                         </a>
+                        {{-- <div class="d-inline ml-2">
+                            <input type="text" id="ricerca-input">
+                        </div> --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -20,6 +23,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- <script>
+                                    let prodotti = @json($products);
+
+                                    const inputRicerca = document.getElementById('ricerca-input');
+
+                                    inputRicerca.addEventListener('keyup', function() {
+                                        for (let i = 0; i < prodotti.length; i++) {
+                                            prodotti[i].name.toLowerCase().includes(inputRicerca.value.toLowerCase());
+                                            console.log(
+                                                prodotti[i].name.toLowerCase().includes(inputRicerca.value.toLowerCase())
+                                            );
+                                            // copiare array ricevuto da blade in una variabile
+                                            // aggiungere un'altra variabile booleana all'oggetto prodotto visible
+                                            // ciclare nel file blade sull'array nuovo
+                                        }
+                                    });
+                                </script> --}}
+
                                 @foreach ($products as $product)
                                 @if (Auth::id() == $product->user_id && $product->visible)  
                                 <tr>

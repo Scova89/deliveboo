@@ -14,9 +14,9 @@ class ProductsController extends Controller
 
     protected $validationRule = [
         "name" => "required|string|max:100",
-        "description" => "required",
+        "description" => "required|string",
         "price" => "required|numeric",
-        "intolerance" => "nullable",
+        "intolerance" => "nullable|string",
         "purchasable" => 'nullable',
         "image" => "nullable|max:2048|mimes:jpeg,bpm,png,jpg,webp",
     ];
@@ -58,7 +58,9 @@ class ProductsController extends Controller
         $newProduct->price = $data["price"];
         $newProduct->intolerance = $data["intolerance"];
         $newProduct->purchasable = isset($data['purchasable']);
-        $newProduct->intolerance = $data["intolerance"];
+        if (isset($data['intolerance'])) {
+            $newProduct->intolerance = $data["intolerance"];
+        }
         $newProduct->user_id = Auth::id();
         $newProduct->slug = $this->getSlug($newProduct->name);
         if (isset($data['image'])) {
@@ -118,7 +120,9 @@ class ProductsController extends Controller
             $product->price = $data["price"];
             $product->intolerance = $data["intolerance"];
             $product->purchasable = isset($data['purchasable']);
-            $product->intolerance = $data["intolerance"];
+            if (isset($data['intolerance'])) {
+                $product->intolerance = $data["intolerance"];
+            }
             $product->user_id = Auth::id();
             $product->slug = $this->getSlug($product->name);
             if (isset($data['image'])) {

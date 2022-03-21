@@ -62,10 +62,6 @@ class TypologyTableSeeder extends Seeder
                 'name' => 'sushi',
                 'image' => 'uploads/3Y1CZmS0yEoyxb5CwdLxfHzrTtEKNsHNU8AVIkvQ.webp',
             ],
-            [
-                'name' => 'dessert',
-                'image' => 'uploads/ScfCmvW0FHPcSQGo6jcqHX0WTmq9dgdN6ca8sgVA.jpg',
-            ],
         ];
 
         foreach ($typologies as $typology) {

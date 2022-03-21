@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->boolean('visible')->default(true);
             $table->string('slug', 130)->unique();
             $table->string('image')->nullable();
-            $table->string('intolerance');
+            $table->string('intolerance')->nullable();
             $table->boolean('purchasable')->default(true);
             $table->timestamps();
         });

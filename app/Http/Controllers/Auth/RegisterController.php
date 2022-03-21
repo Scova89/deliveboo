@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
             'iva' => ['required','unique:users', 'digits:11', 'numeric'],
             'image' => ['nullable','mimes:jpeg,bmp,png,jpg','max:2048'],
-            'typologies' => ['nullable','exists:typologies,id'],
+            'typologies' => ['required','exists:typologies,id'],
         ]);
     }
 
@@ -101,10 +101,8 @@ class RegisterController extends Controller
             $newUser->admin=true;
         }
         $newUser->save();
+        $newUser->typologies()->sync($data['typologies']);
         
-        if (isset($data['typologies'])) {
-            $newUser->typologies()->sync($data['typologies']);
-        }
         return $newUser;
     }
 
