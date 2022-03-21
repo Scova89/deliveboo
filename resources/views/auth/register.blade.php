@@ -148,7 +148,7 @@
                             <div class="mt-2 offset-md-4 col-md-6" id="tipologia-errore" style="padding-left: 15px; padding-right: 15px;"></div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">Carica immagine del ristorante:</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Carica immagine del ristorante: <span style="color: red">*</span></label>
                             <div class="col-md-6 d-flex align-items-center">
                                 <img id="preview" width="100" src="" class="mr-2">
                                 <input type="file" id="image" name="image" onchange="PreviewImage();" class="@error('image') is-invalid @enderror">
