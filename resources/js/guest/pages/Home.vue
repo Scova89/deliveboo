@@ -3,12 +3,7 @@
         <div class="categorie">
             <h4>Scegli una categoria:</h4>
             <div class="box-card">
-                <Card
-                @search="saveCategory"
-                    v-for="categoria in dataShared.categorie"
-                    :key="categoria.id"
-                    :categoria="categoria"
-                />
+                <Card @search="saveCategory" v-for="categoria in dataShared.categorie" :key="categoria.id" :categoria="categoria" />
             </div>
         </div>
         <div class="ristoranti">

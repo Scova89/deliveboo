@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="stringify">cerca</button>
         Lista ristoranti:
         <ul>
             <li v-for="(restaurant, index) in dataShared.restaurants" :key="index">

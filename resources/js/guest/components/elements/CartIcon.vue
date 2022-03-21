@@ -30,11 +30,13 @@
                                 <div>{{total()}}</div>
                             </div>
                             <div class="buttons">
-                                <router-link :to="{ name: 'carrello', params: { title: 'carrello' } }" >
-                                    Vai al carrello
+                                <router-link :to="{ name: 'carrello', params: { title: 'carrello' } }">
+                                    <div @click="disablePopup()">
+                                        Vai al carrello
+                                    </div>
                                 </router-link>
                                 <div>
-                                    <div class="clear-cart" @click="clearCart()">Svuota carrello</div>
+                                    <div class="clear-cart" @click="clearConfirm()">Svuota carrello</div>
                                 </div>
                             </div>
                         </div>
@@ -43,6 +45,27 @@
 
 			</div>
 		</div>
+
+
+        <div class="modal fade" id="confirmClear" tabindex="-1" role="dialog" aria-labelledby="deleteBoxLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Svuota carrello</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler svuotare il carrello? Tutti gli elementi salvati andranno persi.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" @click="clearCart()">Svuota carrello</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </template>
 
@@ -96,6 +119,11 @@ export default {
         clearCart() {
             dataShared.cart = [];
             localStorage.clear('cart');
+        },
+        clearConfirm () {
+            if( localStorage.getItem('cart') != null){
+                $('#confirmClear').modal('show');
+            }
         }
 	},
 };
@@ -241,13 +269,5 @@ div{
             }
         }
     }
-}
-
-
-.container-cartIcon {
-	
-    
-    
-	
 }
 </style>

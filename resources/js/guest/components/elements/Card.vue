@@ -1,5 +1,5 @@
 <template>
-    <div :class="isActive ? 'active' : ''" class="single-card col-lg-2 col-md-4 col-sm-6 col-12" @click="active(), $emit('search', categoria.name)">
+    <div :class="isActive ? 'active' : ''" class="single-card col-lg-2 col-md-4 col-sm-6 col-12" @click="active(), $emit('search', categoria.name), stringify()">
         <div class="container-image">
             <img :src="categoria.image ? 'storage/' + categoria.image : ''" :alt="categoria.name"/>
         </div>
@@ -8,12 +8,14 @@
 </template>
 
 <script>
+import dataShared from '../../dataShared.js';
 
 export default {
     name: "Card",
     data() {
         return {
             isActive: false,
+            dataShared,
         };
     },
     props: {
@@ -22,7 +24,25 @@ export default {
     methods: {
         active: function () {
             this.isActive ? (this.isActive = false) : (this.isActive = true);
+            
         },
+        stringify: function() {
+            if(dataShared.selectedCategories.length > 0){
+                let temp = dataShared.selectedCategories;
+                axios.get('/api/ristoranti/search/'+temp)
+                .then((response)=> {
+                    dataShared.restaurants = [];
+                    dataShared.restaurants = response.data;
+                })
+                .catch((error) =>{
+                    this.$router.push({
+                        name: 'page-404'
+                    })
+                });
+            } else {
+                dataShared.restaurants = [];
+            }
+        }
     },
 };
 </script>
