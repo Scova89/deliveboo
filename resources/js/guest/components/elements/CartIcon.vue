@@ -15,11 +15,11 @@
                                 <li v-for="(element, index) in dataShared.cart" :key="index" >
                                     <div class="col-5">{{ element.name }}</div>
                                     <div class="col-4">
-                                        <i class="fas fa-plus" @click="addCart(element)"></i>
-                                        <span class="quantity">x{{element.quantity}}</span>
                                         <i class="fas fa-minus" @click="removeCart(element)"></i>
+                                        <span class="quantity">x{{element.quantity}}</span>
+                                        <i class="fas fa-plus" @click="addCart(element)"></i>
                                     </div>
-                                    <div class="col-3">€ {{element.price * element.quantity}}</div>
+                                    <div class="col-3">€ {{ (element.price * element.quantity).toFixed(2)}}</div>
                                 </li>
                             </ul>
                             <h2 v-else>Il carrello è vuoto</h2>
@@ -27,12 +27,12 @@
                         <div class="cart-btn">
                             <div class="tot">
                                 <div>Totale:</div>
-                                <div>{{total()}}</div>
+                                <div>{{total().toFixed(2)}}</div>
                             </div>
                             <div class="buttons">
                                 <router-link :to="{ name: 'carrello', params: { title: 'carrello' } }">
                                     <div @click="disablePopup()">
-                                        Vai al carrello
+                                        Vai al pagamento
                                     </div>
                                 </router-link>
                                 <div>
@@ -218,7 +218,10 @@ div{
                                 }
                                 div:last-of-type{
                                     text-align: right;
-                                    display: block;
+                                    display: inline-block;
+                                //     white-space: nowrap;
+                                //     overflow: hidden !important;
+                                //     text-overflow: ellipsis;
                                 }
                             }
                         }

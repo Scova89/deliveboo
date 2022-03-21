@@ -14,18 +14,18 @@
                             {{product.name}}
                         </div>
                         <div class="keys col-3">
-                            <div><i class="fas fa-plus" @click="addCart(product)"></i></div>
-                            <span class="quantity">x{{product.quantity}}</span>
                             <div><i class="fas fa-minus" @click="removeCart(product)"></i></div>
+                            <span class="quantity">x{{product.quantity}}</span>
+                            <div><i class="fas fa-plus" @click="addCart(product)"></i></div>
                         </div>
                         <div class="price col-2">
-                            {{price(product)}} €
+                            {{price(product).toFixed(2)}} €
                         </div>
                     </li>
                 </ul>
                 <div class="total">
                     <div>Totale:</div>
-                    <div>{{total()}} €</div>
+                    <div>{{total().toFixed(2)}} €</div>
                     
                 </div>
 
