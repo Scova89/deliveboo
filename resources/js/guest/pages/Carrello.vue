@@ -33,7 +33,11 @@
         </div>
         <div class="wrapper col-12 col-lg-7">
             <div class="box right">
-                
+                <v-braintree 
+                    authorization="sandbox_bnprjx56_8g4hpjqxn3br4q9h"
+                    @success="onSuccess"
+                    @error="onError"
+                ></v-braintree>
             </div>
         </div>
     </div>
@@ -80,6 +84,15 @@ export default {
                 }
             });
         },
+
+        onSuccess (payload) {
+            let nonce = payload.nonce;
+        // Do something great with the nonce...
+        },
+        onError (error) {
+            let message = error.message;
+        // Whoops, an error has occured while trying to get the nonce
+        }
     },
     created() {
         dataShared.checkout = true;

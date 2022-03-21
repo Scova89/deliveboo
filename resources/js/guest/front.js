@@ -32,8 +32,11 @@ import App from './App.vue';
 
 import router from "./router";
 
-import vClickOutside from 'v-click-outside'
+import vClickOutside from 'v-click-outside';
 
+import vueBraintree from 'vue-braintree';
+
+Vue.use(vueBraintree);
 
 const app = new Vue({
     el: '#app',
