@@ -36,7 +36,6 @@ import vClickOutside from 'v-click-outside';
 
 import vue_braintree from 'vue-braintree';
 
-
 const app = new Vue({
     el: '#app',
     render: h => h(App),
