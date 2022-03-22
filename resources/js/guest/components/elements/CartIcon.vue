@@ -24,7 +24,7 @@
                             </ul>
                             <h2 v-else>Il carrello è vuoto</h2>
                         </div>
-                        <div class="cart-btn">
+                        <div class="cart-btn" v-if="dataShared.cart.length > 0">
                             <div class="tot">
                                 <div>Totale:</div>
                                 <div>{{total().toFixed(2)}}</div>

@@ -15,9 +15,9 @@ class OrderController extends Controller
 {
     protected $validationRule = [
         'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'email' => ['required', 'string', 'email', 'max:255'],
         'address' => ['required', 'string', 'max:255'],
-        'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
+        'phone' => ['required','digits_between:8,15', 'numeric'],
     ];
 
 
@@ -25,17 +25,19 @@ class OrderController extends Controller
         $token = $gateway->clientToken()->generate();
 
         $data = [
-            'succes' => true,
+            'success' => true,
             'token' => $token,
         ];
 
         return response()->json($data,200);
     }
     public function checkdata(Request $request){
+
         $request->validate($this->validationRule);
-        $data = $request->all();
-        return response()->json('success' -> true,200);
+        
+        return response()->json(['success' => true],200);
     }
+
     public function makePayment(Request $request, Gateway $gateway)
     {
         $data = $request->all();

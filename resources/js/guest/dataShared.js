@@ -15,6 +15,7 @@ export default Vue.observable({
     checkCart: false,
     chooseData: [],
     loaded: false,
+    errors: [],
 });
 
 

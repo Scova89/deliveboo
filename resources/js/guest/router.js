@@ -9,6 +9,7 @@ import Ristoranti from "./components/elements/Ristoranti.vue";
 import RistoranteSinglePage from "./pages/RistoranteSinglePage.vue";
 import Prodotto from "./pages/Prodotto.vue";
 import Carrello from "./pages/Carrello.vue";
+import Checkout from "./pages/Checkout.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -39,6 +40,11 @@ const router = new VueRouter({
             path: "/carrello",
             name: "carrello",
             component: Carrello,
+        },
+        {
+            path: "/checkout",
+            name: "checkout",
+            component: Checkout,
         },
         {
             path: "*",

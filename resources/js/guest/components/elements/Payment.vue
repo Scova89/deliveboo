@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<form v-if="!dataShared.loaded">
+		<form v-if="!dataShared.loaded && !dataShared.cart.length == 0">
 			<div class="form-group">
 				<label for="name">Inserisci nome e cognome</label>
 				<input
@@ -29,7 +29,7 @@
 					class="form-control"
 					id="address"
 					name="address"
-					v-model="form.client.address"
+                    v-model="form.client.address"
 				/>
 			</div>
 			<div class="form-group">
@@ -42,13 +42,17 @@
 					v-model="form.client.phone"
 				/>
 			</div>
+            <div v-for="(error, index) in dataShared.errors" :key="index">
+                <div class="mt-1">
+                    <div class="alert alert-danger">{{error[0]}}</div>
+                </div>
+            </div>
 
-			<button type="submit" class="btn btn-primary" @click="updateCart()">
+			<button type="submit" class="btn btn-primary mb-2" @click.prevent="updateCart()">
 				Procedi con l'acquisto
 			</button>
 		</form>
-		<v-braintree
-			v-else
+		<v-braintree v-if="dataShared.loaded && !dataShared.cart.length == 0"
 			:authorization="tokenGenerated"
 			@success="onSuccess"
 			@error="onError"
@@ -58,6 +62,7 @@
 
 <script>
 import dataShared from "../../dataShared.js";
+
 
 export default {
 	name: "Payment",
@@ -87,6 +92,7 @@ export default {
 				.then((response) => {
 					if (response.status == 200) {
 						localStorage.clear("cart");
+                        this.$router.push("checkout")
 					}
 				})
 				.catch(function (error) {
@@ -98,9 +104,17 @@ export default {
 		},
 		updateCart() {
 			axios
-				.get("/api/order/checkdata", this.form.client)
+				.post("/api/order/checkdata", this.form.client)
 				.then((response) => {
-					console.log(response.status, response.data);
+                    if(response.data.success){
+                        dataShared.loaded = true;
+                    }
+				})
+                .catch(function (error) {
+                    dataShared.errors = error.response.data.errors;
+					if(error){
+                        dataShared.loaded = false;
+                    }
 				});
 			this.cart = JSON.parse(localStorage.getItem("cart"));
 			this.form.cart = [];
@@ -110,14 +124,13 @@ export default {
 					quantity: element.quantity,
 				});
 			});
-			dataShared.loaded = true;
+			// dataShared.loaded = true;
 		},
 	},
 	created() {
 		axios
 			.get("/api/order/generate")
 			.then((response) => {
-				console.log(response);
 				this.tokenGenerated = response.data.token;
 			})
 			.catch(function (error) {
