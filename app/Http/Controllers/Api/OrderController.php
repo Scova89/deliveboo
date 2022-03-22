@@ -8,11 +8,19 @@ use App\Product;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Order;
-
+use Illuminate\Support\Facades\Validator;
 
 
 class OrderController extends Controller
 {
+    protected $validationRule = [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'address' => ['required', 'string', 'max:255'],
+        'phone' => ['required','unique:users', 'digits_between:8,15', 'numeric'],
+    ];
+
+
     public function generateToken(Request $request, Gateway $gateway){
         $token = $gateway->clientToken()->generate();
 
@@ -23,10 +31,13 @@ class OrderController extends Controller
 
         return response()->json($data,200);
     }
-
+    public function checkdata(Request $request){
+        $request->validate($this->validationRule);
+        $data = $request->all();
+        return response()->json('success' -> true,200);
+    }
     public function makePayment(Request $request, Gateway $gateway)
     {
-
         $data = $request->all();
         $total = 0;
         $cart = $data['cart'];

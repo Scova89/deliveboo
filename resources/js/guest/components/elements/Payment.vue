@@ -43,7 +43,9 @@
 				/>
 			</div>
 
-			<button type="submit" class="btn btn-primary" @click="updateCart()">Procedi con l'acquisto</button>
+			<button type="submit" class="btn btn-primary" @click="updateCart()">
+				Procedi con l'acquisto
+			</button>
 		</form>
 		<v-braintree
 			v-else
@@ -55,13 +57,13 @@
 </template>
 
 <script>
-import dataShared from '../../dataShared.js'
+import dataShared from "../../dataShared.js";
 
 export default {
 	name: "Payment",
 	data() {
 		return {
-            dataShared,
+			dataShared,
 			tokenGenerated: "",
 			cart: [],
 			form: {
@@ -83,9 +85,9 @@ export default {
 			axios
 				.post("/api/order/payment", this.form)
 				.then((response) => {
-					if(response.status == 200){
-                        localStorage.clear('cart');
-                    }
+					if (response.status == 200) {
+						localStorage.clear("cart");
+					}
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -94,17 +96,22 @@ export default {
 		onError(error) {
 			let message = error.message;
 		},
-        updateCart () {
-            this.cart = JSON.parse(localStorage.getItem("cart"));
-            this.form.cart = [];
-            this.cart.forEach((element) => {
-                this.form.cart.push({
-                    id: element.id,
-                    quantity: element.quantity,
-                });
-            });
-            dataShared.loaded = true
-        }
+		updateCart() {
+			axios
+				.get("/api/order/checkdata", this.form.client)
+				.then((response) => {
+					console.log(response.status, response.data);
+				});
+			this.cart = JSON.parse(localStorage.getItem("cart"));
+			this.form.cart = [];
+			this.cart.forEach((element) => {
+				this.form.cart.push({
+					id: element.id,
+					quantity: element.quantity,
+				});
+			});
+			dataShared.loaded = true;
+		},
 	},
 	created() {
 		axios
