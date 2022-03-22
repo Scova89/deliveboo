@@ -14,9 +14,9 @@
                             {{product.name}}
                         </div>
                         <div class="keys col-3">
-                            <div><i class="fas fa-minus" @click="removeCart(product)"></i></div>
+                            <div><i class="fas fa-minus" @click="removeCart(product)" v-if="!dataShared.loaded"></i></div>
                             <span class="quantity">x{{product.quantity}}</span>
-                            <div><i class="fas fa-plus" @click="addCart(product)"></i></div>
+                            <div><i class="fas fa-plus" @click="addCart(product)" v-if="!dataShared.loaded"></i></div>
                         </div>
                         <div class="price col-2">
                             {{price(product).toFixed(2)}} €
@@ -33,7 +33,9 @@
         </div>
         <div class="wrapper col-12 col-lg-7">
             <div class="box right">
-                
+
+                <Payment/>
+
             </div>
         </div>
     </div>
@@ -41,9 +43,13 @@
 
 <script>
 import dataShared from '../dataShared.js';
+import Payment from '../components/elements/Payment.vue';
 
 export default {
     name: 'Carrello',
+    components: {
+        Payment,
+    },
     data() {
         return {
             dataShared,
@@ -64,7 +70,6 @@ export default {
             product.quantity++;
 			localStorage.setItem('cart', JSON.stringify(dataShared.cart));
         },
-
         removeCart: function(product) {
             let array = {quantity: 1, id: product.id, name: product.name, price: product.price, user_id: product.user_id};
             dataShared.key++;
@@ -79,6 +84,7 @@ export default {
                     localStorage.setItem('cart', JSON.stringify(dataShared.cart));
                 }
             });
+
         },
     },
     created() {
