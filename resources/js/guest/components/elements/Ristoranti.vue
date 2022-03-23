@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul class="list-unstyled">
-            <li v-for="(restaurant, index) in dataShared.restaurants" :key="index">
+        <ul class="list-unstyled row">
+            <li v-for="(restaurant, index) in dataShared.restaurants" :key="index" class="col-12 col-lg-6">
                 <router-link :to="{name: 'ristorante', params: {slug: restaurant.slug, title: restaurant.name}} ">
                     <div class="box-image">
                         <img :src="restaurant.image ? 'storage/' + restaurant.image : ''" :alt="restaurant.name"/>
