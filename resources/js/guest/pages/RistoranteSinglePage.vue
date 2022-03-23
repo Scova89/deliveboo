@@ -34,19 +34,10 @@
 			</li>
 		</ul>
 		<div class="lista-prodotti">
-			<h5>Lista prodotti:</h5>
+			<h5>Menù</h5>
 			<ul v-for="product in ristorante.products" :key="product.id">
 				<li v-if="product.visible && product.purchasable">
-					<router-link
-						:to="{
-							name: 'prodotto',
-							params: { slug: product.slug, title: product.name },
-						}"
-					>
-						{{ product.name }} prezzo: {{ product.price }} €
-					</router-link>
-					<i class="fas fa-plus" @click="addCart(product)"></i>
-					<i class="fas fa-minus" @click="removeCart(product)"></i>
+					<CardProduct :product="product" />
 				</li>
 			</ul>
 		</div>
@@ -109,9 +100,13 @@
 
 <script>
 import dataShared from "../dataShared";
+import CardProduct from "../components/elements/CardProduct.vue";
 
 export default {
 	name: "RistoranteSinglePage",
+	components: {
+		CardProduct,
+	},
 	data() {
 		return {
 			ristorante: {},
