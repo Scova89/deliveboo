@@ -1,21 +1,8 @@
 <template>
 	<div>
 		<div class="info-ristorante">
-			<div class="container-image">
-				<div
-					v-if="ristorante.image"
-					class="img-box"
-					style="width: 100%"
-				>
-					<img
-						:src="
-							ristorante.image
-								? '/storage/' + ristorante.image
-								: ''
-						"
-						:alt="ristorante.name"
-					/>
-				</div>
+			<div class="container-image" v-if="ristorante.image">
+				<img :src="ristorante.image ? '/storage/' + ristorante.image : '' " :alt="ristorante.name"/>
 			</div>
 			<div class="container-info">
 				<h1>{{ ristorante.name }}</h1>
@@ -35,9 +22,9 @@
 		</ul>
 		<div class="lista-prodotti">
 			<h5>Menù</h5>
-			<ul v-for="product in ristorante.products" :key="product.id">
-				<li v-if="product.visible && product.purchasable">
-					<CardProduct :product="product" />
+			<ul>
+				<li v-for="product in ristorante.products" :key="product.id">
+					<CardProduct :product="product"  v-if="product.visible && product.purchasable"/>
 				</li>
 			</ul>
 		</div>
@@ -114,80 +101,6 @@ export default {
 		};
 	},
 	methods: {
-		addCart: function (product) {
-			let array = {
-				quantity: 1,
-				id: product.id,
-				name: product.name,
-				price: product.price,
-				user_id: product.user_id,
-			};
-			let index = 0;
-			dataShared.key++;
-
-			if (
-				localStorage.getItem("cart") == "[]" ||
-				localStorage.getItem("cart") == null ||
-				dataShared.cart[0].user_id == array.user_id
-			) {
-				if (dataShared.cart[0] != null) {
-					dataShared.cart.forEach((element) => {
-						if (element.id == array.id) {
-							element.quantity++;
-							index = element.id;
-							localStorage.setItem(
-								"cart",
-								JSON.stringify(dataShared.cart)
-							);
-						}
-					});
-					if (index != array.id) {
-						dataShared.cart.push(array);
-						localStorage.setItem(
-							"cart",
-							JSON.stringify(dataShared.cart)
-						);
-					}
-				} else {
-					dataShared.cart[0] = array;
-					localStorage.setItem(
-						"cart",
-						JSON.stringify(dataShared.cart)
-					);
-				}
-			} else {
-				dataShared.checkCart = true;
-				dataShared.chooseData = array;
-				$("#choose").modal("show");
-			}
-		},
-
-		removeCart: function (product) {
-			let array = {
-				quantity: 1,
-				id: product.id,
-				name: product.name,
-				price: product.price,
-				user_id: product.user_id,
-			};
-			dataShared.key++;
-
-			dataShared.cart.forEach((element, index) => {
-				if (element.id == array.id && element.quantity == 1) {
-					dataShared.cart.splice(index, 1);
-					localStorage.setItem(
-						"cart",
-						JSON.stringify(dataShared.cart)
-					);
-				} else if (element.id == array.id && element.quantity > 1) {
-					element.quantity--;
-					localStorage.setItem(
-						"cart",
-						JSON.stringify(dataShared.cart)
-					);
-				}
-			});
-		},
 
 		clearCartAndSave() {
 			localStorage.clear("cart");
@@ -203,14 +116,6 @@ export default {
 			.get(`/api/ristoranti/${this.$route.params.slug}`)
 			.then((response) => {
 				this.ristorante = response.data;
-				// if(localStorage.length > 0){
-				//     for (let i = 0; i < localStorage.length; i++) {
-				//         for(let j = 0; j < response.data.products.length; j++){
-				//             if(localStorage.key(i) == response.data.products[j].id){
-				//             }
-				//         }
-				//     }
-				// }
 			})
 			.catch((error) => {
 				this.$router.push({ name: "page-404" });
@@ -222,32 +127,34 @@ export default {
 <style lang='scss' scoped>
 .info-ristorante {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	gap: 40px;
 	margin-bottom: 15px;
 	justify-content: center;
 	align-items: center;
+	flex-basis: 50%;
 	@media screen and (min-width: 768px) {
 		flex-direction: row;
 	}
+	h1 {
+		margin-bottom: 40px;
+	}
 	.container-image {
-		> div {
-			overflow: hidden;
-			border-radius: 15px;
-			max-width: 100%;
-			@media screen and (min-width: 768px) {
-				> img {
-					max-height: 400px;
-					max-width: 600px;
-					object-fit: center;
-				}
-			}
-			> img {
-				max-height: 400px;
-				max-width: 100%;
-				object-fit: center;
-			}
+		overflow: hidden;
+		border-radius: 15px;
+		width: 100%;
+		> img {
+			max-height: 400px;
+			width: 100%;
+			object-fit: center;
 		}
+		@media screen and (min-width: 768px) {
+			width: 50%;
+			height: 100%;
+		}
+		@media screen and (min-width: 1400px) {
+			width: 30%;
+		}	
 	}
 	.container-info {
 		ul {
@@ -270,5 +177,26 @@ export default {
 	margin-bottom: 10px;
 	border-radius: 10px;
 	gap: 25px;
+}
+
+.lista-prodotti {
+	margin-top: 40px;
+	ul {
+		list-style: none;
+		display: flex;
+		gap: 15px;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+	}
+	@media screen and (min-width: 1400px) {
+		ul {
+			flex-wrap: wrap;
+			flex-direction: row;
+			li {
+				width: calc((100% - 15px) / 2);
+			}
+		}
+	}
 }
 </style>

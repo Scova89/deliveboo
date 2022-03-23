@@ -1,15 +1,18 @@
 <template>
-	<div>
-		<router-link
-			:to="{
-				name: 'prodotto',
-				params: { slug: product.slug, title: product.name },
-			}"
-		>
-			{{ product.name }} prezzo: {{ product.price }} €
-		</router-link>
-		<i class="fas fa-plus" @click="addCart(product)"></i>
-		<i class="fas fa-minus" @click="removeCart(product)"></i>
+	<div class="card-product">
+		<div class="container-image">
+			<img :src="product.image ? '/storage/' + product.image : ''" alt="">
+		</div>
+		<div class="container-info">
+			<router-link :to="{ name: 'prodotto', params: { slug: product.slug, title: product.name }}">
+				{{ product.name }} 
+			</router-link>
+			<div>€ {{ product.price }}</div>
+			<div class="container-btn-cart">
+				<div class="cart-btn add" @click="addCart(product)">Aggiungi al carrello</div>
+				<div class="cart-btn remove" @click="removeCart(product)">Rimuovi dal carrello</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -106,4 +109,71 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "../../../../sass/_variables.scss";
+
+.card-product {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	border-radius: 15px;
+	padding: 10px;
+	display: flex;
+	gap: 15px;
+	flex-direction: column;
+	align-items: center;
+
+	@media screen and (min-width: 576px) {
+		flex-direction: row;
+		
+	}
+	.container-image {
+		overflow: hidden;
+		border-radius: 10px;
+		width: 100%;
+
+		img {
+			width: 100%;
+		}
+		@media screen and (min-width: 576px) {
+			width: calc(100% / 4);
+
+		}
+		@media screen and (min-width: 1400px) {
+			width: calc(100% / 3);
+			img {
+				width: 100%;
+				height: 160px;
+				object-fit: cover;
+			}
+		}
+	}
+	.container-info {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		justify-content: center;
+		.container-btn-cart {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 5px;
+			.cart-btn {
+				display: inline-block;
+				padding: 10px;
+				cursor: pointer;
+				border-radius: 10px;
+				color: white;
+				box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px;
+				margin: 0;
+				font-weight: 600;
+				&.add {
+					background-color: $mainColor;
+
+				}
+				&.remove {
+					background-color: lightgray;
+				}
+			}
+		}
+	}
+	
+}
 </style>
