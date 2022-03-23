@@ -30,7 +30,16 @@
 @foreach ($order->products as $product)
     
     <li>
-            {{ $product->name }} x{{ $product->pivot->quantity }}
+            {{ $product->name }} x{{ $product->pivot->quantity }} € {{ $product->price * $product->pivot->quantity }}
     </li>
 @endforeach
 </ul>
+<h3>
+    @php
+        $total = 0;
+        foreach ($order->products as $product) {
+           $total += $product->price * $product->pivot->quantity;
+        }
+    @endphp
+    Totale € {{$total}}
+</h3>

@@ -29,9 +29,12 @@
     </li>
     @endforeach
 </ul>
-
-<style>
-    li{
-        list-style:none;
-    }
-</style>
+<h3>
+    @php
+        $total = 0;
+        foreach ($order->products as $product) {
+           $total += $product->price * $product->pivot->quantity;
+        }
+    @endphp
+    Totale € {{$total}}
+</h3>
