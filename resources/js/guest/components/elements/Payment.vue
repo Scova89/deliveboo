@@ -92,7 +92,7 @@ export default {
 				.then((response) => {
 					if (response.status == 200) {
 						localStorage.clear("cart");
-                        this.$router.push("checkout")
+                        this.$router.push("checkout");
 					}
 				})
 				.catch(function (error) {
