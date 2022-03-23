@@ -16,7 +16,7 @@
         Telefono: {{$order->phone}}
     </li>
     <li>
-        Indirizzo: {{$order->adress}}
+        Indirizzo: {{$order->address}}
     </li>
     <li>
         E-mail: {{$order->email}}

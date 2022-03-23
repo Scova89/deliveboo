@@ -2,7 +2,7 @@
     <div class="jumbo-img">
         <div class="jumbo-title col-lg-6 col-12">
             <div>Hai fame?</div>
-            <div>Ordina da <span class="color">DeliveBoo</span>!!!</div>
+            <div>Ordina da <span class="color">DeliveBoo</span>!</div>
         </div>
         <img class="col-lg-6 col-10" src="https://i.postimg.cc/8zM1m90K/delivery-auto-x2-1-digital-art-x4-removebg-1.png" alt="Jumbo vector">
         
