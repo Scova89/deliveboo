@@ -104,6 +104,12 @@ export default {
 				}
 			});
 		},
+        clearCartAndSave() {
+			localStorage.clear("cart");
+			dataShared.cart = [];
+			dataShared.cart[0] = dataShared.chooseData;
+			localStorage.setItem("cart", JSON.stringify(dataShared.cart));
+		},
 	},
 };
 </script>
