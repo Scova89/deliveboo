@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\OrderConfirmMail;
+use App\User;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -50,6 +51,7 @@ class OrderController extends Controller
         
         $product = Product::find($cart[0]['id']);
         $user_id = $product->user_id;
+        $mailUser = User::find($user_id)->email;
 
         foreach ($cart as $product) {
             $total += Product::find($product['id'])->price * $product['quantity'];
@@ -86,7 +88,7 @@ class OrderController extends Controller
                 $newOrder->products()->attach($product["id"], ['quantity' => $product["quantity"]]);
             }
 
-            Mail::to($newOrder->email)->send(new ConfirmMailRestaurant($newOrder));
+            Mail::to($mailUser)->send(new ConfirmMailRestaurant($newOrder));
             Mail::to($newOrder->email)->send(new ConfirmMailClient($newOrder));
 
 
