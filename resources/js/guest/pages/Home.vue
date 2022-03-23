@@ -8,7 +8,7 @@
                 <Card @search="saveCategory" v-for="categoria in dataShared.categorie" :key="categoria.id" :categoria="categoria" />
             </div>
         </div>
-        <div class="ristoranti">
+        <div class="ristoranti" v-if="dataShared.restaurants.length > 0">
             <h4>Risultato ricerca</h4>
             <div class="box-ristoranti">
                 <Ristoranti/>

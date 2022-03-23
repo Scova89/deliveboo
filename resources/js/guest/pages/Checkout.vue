@@ -1,6 +1,6 @@
 <template>
 	<div class="main-box">
-		<h1>Transazione avvenuta con successo!!!</h1>
+		<h1>Transazione avvenuta con successo!</h1>
         <img src="https://www.linkpicture.com/q/imageedit_5_5120642073.gif">
         
 		<h4>Il tuo ordine sta per arrivare. Segui la tua consegna via mail.</h4>
