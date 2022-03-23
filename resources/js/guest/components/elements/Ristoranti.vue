@@ -1,10 +1,15 @@
 <template>
     <div>
-        Lista ristoranti:
-        <ul>
+        <ul class="list-unstyled">
             <li v-for="(restaurant, index) in dataShared.restaurants" :key="index">
-                
-                <router-link :to="{name: 'ristorante', params: {slug: restaurant.slug, title: restaurant.name}} ">{{restaurant.name}}</router-link>
+                <router-link :to="{name: 'ristorante', params: {slug: restaurant.slug, title: restaurant.name}} ">
+                    <div class="box-image">
+                        <img :src="restaurant.image ? 'storage/' + restaurant.image : ''" :alt="restaurant.name"/>
+                    </div>
+                    <div class="name">
+                        {{restaurant.name}}
+                    </div>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -44,5 +49,46 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../../../sass/_variables.scss";
 
+    div{
+        ul{
+            li{
+                a{  
+                    display: flex;
+                    align-items: center;
+                    height: 100px;
+                    list-style: none;
+                    margin: 10px 0px;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                    border-radius: 15px;
+                    text-decoration: none;
+                    color: black;
+                    font-size: 25px;
+                    transition: 0.3s all;
+                    .box-image{
+                        margin: 10px;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        img{
+                            object-fit: cover;
+                            object-position: center center;
+                            height: 80px;
+                            width: 130px;
+
+                        }
+                    }
+                    .name{
+                        margin-left: 50px;
+                    }
+                }
+            }
+            li:hover{
+                a{
+                    background-color: rgba(233, 233, 233, 0.25);
+                    color: $mainColor;
+                }
+            }
+        }
+    }
 </style>

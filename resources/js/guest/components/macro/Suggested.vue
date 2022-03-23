@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h2>I ristoranti più popolari:</h2>
+    <h4>I ristoranti più popolari</h4>
     <div class="box-card">
         <div class="cardBig col-12 col-sm-6 col-lg-3" v-for="(ristorante, index) in ristoranti" :key="index">
             <div class="container-image">
@@ -38,6 +38,9 @@ export default {
 
 <style scoped lang='scss'>
 @import '../../../../sass/_variables.scss';
+    h4{
+        margin: 30px 0px 20px 0px;
+    }
     .box-card{
         display: flex;
         flex-wrap: wrap;

@@ -3,13 +3,13 @@
         <Jumbotron/>
         <Suggested/>
         <div class="categorie">
-            <h4>Scegli una categoria:</h4>
+            <h4>Scegli una categoria</h4>
             <div class="box-card">
                 <Card @search="saveCategory" v-for="categoria in dataShared.categorie" :key="categoria.id" :categoria="categoria" />
             </div>
         </div>
         <div class="ristoranti">
-            <h4>Scegli un ristorante:</h4>
+            <h4>Risultato ricerca</h4>
             <div class="box-ristoranti">
                 <Ristoranti/>
             </div>
@@ -64,10 +64,10 @@ export default {
 
 <style scoped lang="scss">
 div{
+    h4 {
+        margin: 20px 0px;
+    }
     .categorie{
-        h4 {
-            margin-bottom: 10px;
-        }
         .box-card {
             display: flex;
             flex-wrap: wrap;
