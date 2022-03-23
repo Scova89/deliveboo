@@ -45,7 +45,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         .cardBig{ 
-            height: 200px;
+            height: 250px;
             padding: 10px;
             .container-image{
                 aspect-ratio: 16 / 9;
@@ -69,5 +69,11 @@ export default {
                 }
             }
         }
+    }
+    @media screen and (min-width: 992px) {
+        .cardBig{
+            height: 170px !important;
+        }
+        
     }
 </style>
