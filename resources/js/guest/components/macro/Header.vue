@@ -20,7 +20,6 @@
 <script>
 import CartIcon from '../elements/CartIcon.vue'
 import dataShared from '../../dataShared.js'
-
 export default {
     name: 'Header',
     data() {
@@ -30,9 +29,7 @@ export default {
     },
     components: {
         CartIcon,
-
     }
-
 }
 </script>
 

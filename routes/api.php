@@ -29,3 +29,8 @@ Route::get('/categorie/{slug}', 'Api\TypologyController@show');
 
 // Rotte prodotti
 Route::get('/prodotti/{slug}', 'Api\ProductController@show');
+
+//rotte braintree
+Route::get('/order/generate', 'Api\OrderController@generateToken');
+Route::post('/order/payment', 'Api\OrderController@makePayment');
+Route::post('/order/checkdata','Api\OrderController@checkdata');

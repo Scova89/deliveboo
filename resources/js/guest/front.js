@@ -32,8 +32,9 @@ import App from './App.vue';
 
 import router from "./router";
 
-import vClickOutside from 'v-click-outside'
+import vClickOutside from 'v-click-outside';
 
+import vue_braintree from 'vue-braintree';
 
 const app = new Vue({
     el: '#app',
@@ -49,6 +50,8 @@ router.beforeEach((to, from, next) => {
         document.title = `DeliveBoo - ${to.params.title}`
     }
     next()
-})
+});
 
-Vue.use(vClickOutside)
+Vue.use(vClickOutside);
+
+Vue.use(vue_braintree);
