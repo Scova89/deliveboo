@@ -5,19 +5,32 @@
     Ciao <strong>{{$order->name}}</strong>, ti confermiamo che l'ordine effettuato è andato a buon fine!
 </p>
 
-<h2>
+<h3>
+    I tuoi dati:
+</h3>
+<ul>
+    <li>
+        Nome: {{$order->name}}
+    </li>
+    <li>
+        Telefono: {{$order->phone}}
+    </li>
+    <li>
+        Indirizzo: {{$order->adress}}
+    </li>
+    <li>
+        E-mail: {{$order->email}}
+    </li>
+</ul>
+
+<h3>
     Riepilogo ordine:
-</h2>
+</h3>
 <ul>
 @foreach ($order->products as $product)
     
     <li>
-        <span>
-            {{ $product->name }}
-        </span>
-        <span>
-            x{{ $product->pivot->quantity }}
-        </span>
+            {{ $product->name }} x{{ $product->pivot->quantity }}
     </li>
 @endforeach
 </ul>
