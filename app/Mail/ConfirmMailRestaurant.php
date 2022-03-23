@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderConfirmMail extends Mailable
+class ConfirmMailRestaurant extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,8 +30,8 @@ class OrderConfirmMail extends Mailable
      *
      * @return $this
      */
-    public function build(Order $order)
+    public function build()
     {
-        return $this->view('mail.orderconfirm');
+        return $this->view('mail.orderconfirmrestaurant');
     }
 }

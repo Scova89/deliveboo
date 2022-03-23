@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Mail\ConfirmMailRestaurant;
+use App\Mail\ConfirmMailClient;
 use App\Product;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
@@ -83,8 +85,10 @@ class OrderController extends Controller
             foreach ($cart as $product) {
                 $newOrder->products()->attach($product["id"], ['quantity' => $product["quantity"]]);
             }
-            
-            Mail::to($newOrder->email)->send(new OrderConfirmMail($newOrder));
+
+            Mail::to($newOrder->email)->send(new ConfirmMailRestaurant($newOrder));
+            Mail::to($newOrder->email)->send(new ConfirmMailClient($newOrder));
+
 
             $data = [
                 'success' => true,
