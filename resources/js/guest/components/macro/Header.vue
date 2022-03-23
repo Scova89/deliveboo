@@ -14,6 +14,8 @@
                 <a href="/login">Area riservata</a>
             </div>
         </div>
+        
+        
     </header>
 </template>
 
@@ -39,14 +41,16 @@ export default {
 <style scoped lang="scss">
 @import '../../../../sass/_variables.scss';
 header{
-    height: 250px;
+    height: 100px;
     background-color: $mainColor;
     padding: 30px 10px;
+    
     .box{
         display: flex;
         height: 80px;
         justify-content: space-between;
         max-width: 1400px;
+        align-items: center;
         .left{
             width: 50%;
             > a {
@@ -95,10 +99,12 @@ header{
 }
 @media screen and (min-width: 576px) {
     header{
-        padding: 30px;
-        height: 300px;
+        padding: 20px;
+        height: 110px;
         transition: 0.5s all;
+        
         .box {
+            align-items: center;
             .left {
                 display: flex;
                 align-items: center;
