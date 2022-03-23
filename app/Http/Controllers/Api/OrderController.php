@@ -9,6 +9,8 @@ use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\OrderConfirmMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class OrderController extends Controller
@@ -43,12 +45,19 @@ class OrderController extends Controller
         $data = $request->all();
         $total = 0;
         $cart = $data['cart'];
-
+        
         $product = Product::find($cart[0]['id']);
         $user_id = $product->user_id;
 
         foreach ($cart as $product) {
             $total += Product::find($product['id'])->price * $product['quantity'];
+        //     $productName = Product::find($product['id'])->name;
+        //     $productPrice = Product::find($product['id'])->price;
+        //     $orderArray = [];
+        //     $orderArray[] = ['name' => $productName];
+        //     $orderArray[] = ['prezzo' => $productPrice];
+        //     $orderArray[] = ['quantity' => $product['quantity']];
+        //     $orderSummary[] = $orderArray;
         }
 
         $result = $gateway->transaction()->sale([
@@ -74,11 +83,15 @@ class OrderController extends Controller
             foreach ($cart as $product) {
                 $newOrder->products()->attach($product["id"], ['quantity' => $product["quantity"]]);
             }
+            
+            Mail::to($newOrder->email)->send(new OrderConfirmMail($newOrder));
 
             $data = [
                 'success' => true,
                 'message' => "Transazione eseguita con Successo!"
             ];
+
+
             return response()->json($data, 200);
         } else {
             $data = [
