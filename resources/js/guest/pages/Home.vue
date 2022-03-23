@@ -1,6 +1,7 @@
 <template>
     <div>
         <Jumbotron/>
+        <Suggested/>
         <div class="categorie">
             <h4>Scegli una categoria:</h4>
             <div class="box-card">
@@ -20,6 +21,7 @@
 import Card from "../components/elements/Card.vue";
 import Ristoranti from "../components/elements/Ristoranti.vue";
 import Jumbotron from '../components/macro/Jumbotron.vue'
+import Suggested from '../components/macro/Suggested.vue'
 
 import dataShared from "../dataShared";
 
@@ -29,6 +31,7 @@ export default {
         Card,
         Ristoranti,
         Jumbotron,
+        Suggested,
     },
     data() {
         return {

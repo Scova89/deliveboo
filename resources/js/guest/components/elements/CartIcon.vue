@@ -273,4 +273,12 @@ div{
         }
     }
 }
+@media screen and (max-width: 650px) {
+    .cart-container{
+        position: fixed !important;
+        top: 130px !important;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
 </style>
