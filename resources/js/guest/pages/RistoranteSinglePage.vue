@@ -146,7 +146,7 @@ export default {
 		> img {
 			max-height: 400px;
 			width: 100%;
-			object-fit: center;
+			object-fit: contain;
 		}
 		@media screen and (min-width: 768px) {
 			width: 50%;

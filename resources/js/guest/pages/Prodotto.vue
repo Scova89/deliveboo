@@ -229,7 +229,7 @@ export default {
                 img{
                     border-radius: 20px;
                     height: 100%;
-                    object-fit: cover;
+                    object-fit: contain;
                     width: 100%;
                 }
             }
