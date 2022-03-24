@@ -13,7 +13,6 @@ import Header from './components/macro/Header.vue'
 import Main from './components/macro/Main.vue'
 import MainCheckout from './components/macro/MainCheckout.vue'
 import Footer from './components/macro/Footer.vue'
-import Popper from 'popper.js'
 
 export default {
     name: 'App',

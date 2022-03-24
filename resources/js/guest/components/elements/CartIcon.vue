@@ -245,13 +245,15 @@ div{
                             justify-content: center;
                             a{
                                 border-radius: 30px;
-                                padding: 10px 15px;
                                 font-size: 16px;
                                 font-weight: 600;
                                 color: white;
                                 text-decoration: none;
                                 background: $mainColor;
                                 margin-right: 20px;
+                                div{
+                                    padding: 10px 15px;
+                                }
                             }
                             .clear-cart{
                                 cursor: pointer;
