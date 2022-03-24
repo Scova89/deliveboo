@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="title">404 :(</div>
-        <div class="message">Page not found!</div>
+        <div class="message">Pagino non trovata!</div>
         <router-link :to="{ name: 'home' }"> Torna alla home </router-link>
     </div>
 </template>
