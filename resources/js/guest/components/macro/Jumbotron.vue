@@ -27,7 +27,10 @@ export default {
         background: rgb(245,245,245);
         background: linear-gradient(164deg, rgba(245,245,245,1) 0%, rgba(56,182,255,0.5) 100%); 
         border-radius: 30px;
-        margin: 20px;
+        margin: 10px;
+        @media screen and (min-width: 576px) {
+            margin: 20px;
+        }
         .jumbo-title{
             display: flex;
             flex-direction: column;
@@ -47,8 +50,6 @@ export default {
         .jumbo-img{
             .jumbo-title{
                 font-size: 35px;
-                .color{
-                }
             }
         }
     }

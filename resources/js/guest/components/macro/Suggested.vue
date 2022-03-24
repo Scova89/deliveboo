@@ -14,11 +14,14 @@
 </template>
 
 <script>
+import dataShared from "../../dataShared";
+
 export default {
     name: 'suggested',
     data() {
         return {
             ristoranti : [],
+            dataShared
         }
     },
     mounted() {
@@ -27,7 +30,9 @@ export default {
             response.data.forEach(element => {
                 if(element.name == 'McDonald\'s' || element.name == 'KFC' || element.name == 'Burger King' || element.name == 'Old Wild West')
                 this.ristoranti.push(element);
+
             });
+            dataShared.caricamentoSuggested = true;
         })
         .catch((error) => {
             this.$router.push({ name: "page-404" });

@@ -16,6 +16,9 @@ export default Vue.observable({
     chooseData: [],
     loaded: false,
     errors: [],
+    caricamentoTypologies: false,
+    caricamentoSuggested: false,
+    caricamentoRestaurants: false
 });
 
 

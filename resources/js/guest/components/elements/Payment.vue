@@ -48,15 +48,24 @@
                 </div>
             </div>
 
-			<button type="submit" class="btn btn-primary mb-2" @click.prevent="updateCart()">
+			<button type="submit" class="btn btn-primary mb-2" @click.prevent="updateCart()" >
 				Procedi con l'acquisto
 			</button>
 		</form>
 		<v-braintree v-if="dataShared.loaded && !dataShared.cart.length == 0"
 			:authorization="tokenGenerated"
 			@success="onSuccess"
-			@error="onError"
-		></v-braintree>
+			@error="onError">
+			<template #button="slotProps">
+				<div
+					ref="paymentBtnRef"
+					@click="slotProps.submit"
+				/>
+			</template>
+		</v-braintree>
+		<button type="button" class="btn btn-primary mb-2" @click="beforeBuy()" v-if="dataShared.loaded && dataShared.cart.length > 0" :disabled="btnDisable == true">
+			Procedi al pagamento
+		</button>
 	</div>
 </template>
 
@@ -81,9 +90,14 @@ export default {
 					phone: "",
 				},
 			},
+			btnDisable: false,
 		};
 	},
 	methods: {
+		beforeBuy() {
+			this.$refs.paymentBtnRef.click();
+			this.btnDisable = true;
+        },
 		onSuccess(payload) {
 			let nonce = payload.nonce;
 			this.form.tokenClient = nonce;

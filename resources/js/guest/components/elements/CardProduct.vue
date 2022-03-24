@@ -9,7 +9,8 @@
 			</router-link>
 			<div>€ {{ product.price }}</div>
 			<div class="container-btn-cart">
-				<div class="cart-btn add" @click="addCart(product)">Aggiungi al carrello</div>
+				<div class="cart-btn add" @click="addCart(product), showInput=!showInput">Aggiungi al carrello</div>
+				<div ref="dropdown" v-if="showInput" class="popover-custom">Aggiunto al carrello</div>
 				<div class="cart-btn remove" @click="removeCart(product)">Rimuovi dal carrello</div>
 			</div>
 		</div>
@@ -111,6 +112,13 @@ export default {
 			localStorage.setItem("cart", JSON.stringify(dataShared.cart));
 		},
 	},
+	mounted() {
+		this.$nextTick(function() {
+			var popper = new Popper(this.$refs["showInputButton"], this.$refs["dropdown"], {
+				placement: 'bottom-start'
+			});
+		});
+	},
 };
 </script>
 
@@ -172,10 +180,18 @@ export default {
 				font-weight: 600;
 				&.add {
 					background-color: $mainColor;
+					&:active {
+						background-color: white;
+						color: black;
+					}
 
 				}
 				&.remove {
 					background-color: lightgray;
+					&:active {
+						background-color: red;
+						color: white;
+					}
 				}
 			}
 		}

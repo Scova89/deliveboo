@@ -13,6 +13,7 @@ import Header from './components/macro/Header.vue'
 import Main from './components/macro/Main.vue'
 import MainCheckout from './components/macro/MainCheckout.vue'
 import Footer from './components/macro/Footer.vue'
+import Popper from 'popper.js'
 
 export default {
     name: 'App',
@@ -34,6 +35,8 @@ export default {
     },
     created() {
         dataShared.cart = JSON.parse(localStorage.getItem('cart')) != null ? JSON.parse(localStorage.getItem('cart')) : [];
+        Popper.Defaults.modifiers.computeStyle.gpuAcceleration = false
+
     },
 }
 </script>

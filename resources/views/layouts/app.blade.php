@@ -37,6 +37,11 @@
                                 <a href="{{ route('products.index') }}">Prodotti</a>
                             </li>
                         @endif
+                        @if(Auth::user() != null && !Auth::user()->admin)
+                            <li >
+                                <a href="{{ route('orders.index') }}">Ordini</a>
+                            </li>
+                        @endif
                         @if(Auth::user() != null && Auth::user()->admin)
                             <li >
                                 <a href="{{ route('typologies.index') }}">Tipologie</a>

@@ -25,6 +25,7 @@ Route::prefix("admin")->namespace("Admin")->middleware("verified")->group(
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('products', 'ProductsController');
     Route::resource('typologies', 'TypologiesController');
+    Route::resource('orders', 'OrdersController');
 });
 
 Route::get("{any?}", function () {

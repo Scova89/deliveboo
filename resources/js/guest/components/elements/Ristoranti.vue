@@ -33,6 +33,7 @@ export default {
             .then((response)=> {
                 dataShared.restaurants = [];
                 dataShared.restaurants = response.data;
+                dataShared.caricamentoRestaurants = true
             })
             .catch((error) =>{
                 this.$router.push({
