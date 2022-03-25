@@ -1,4 +1,4 @@
-<h1>DeliveBoo team3</h1>
+<h1>DeliveBoo team3 (classe 47)</h1>
 
 ![](https://media.glassdoor.com/sqll/1053365/deliveroo-squarelogo-1499793310067.png)
 
