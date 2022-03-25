@@ -50,18 +50,19 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+// header
 header{
-    height: 300px;
+    height: 250px;
     background-color: $mainColor;
     padding: 30px 10px;
     .box{
         display: flex;
         height: 80px;
         justify-content: space-between;
+        max-width: 1400px;
         .left{
             width: 50%;
             > a {
-                
                 display: flex;
                 align-items: center;
                 text-decoration: none;
@@ -76,7 +77,18 @@ header{
                     font-weight: 700;
                     margin-left: 20px;
                     display: none;
-
+                }
+            }
+            > nav {
+                ul{
+                    margin: 0;
+                    list-style: none;
+                    display: flex;
+                    gap: 15px;
+                    a{
+                        color: white;
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -85,22 +97,31 @@ header{
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            ul {
+            ul{
+                margin-top: 20px;
+                margin-right: 10px;
                 list-style: none;
-                display: flex;
                 gap: 10px;
+                li{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
             a{  
+                text-align: center;
                 display: block;
+                min-width: 161px;
                 text-decoration: none;
                 color: black;
                 background-color: white;
-                padding: 10px 20px;
+                padding: 15px 30px;
                 border-radius: 30px;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
                 font-size: 16px;
                 font-weight: 600;
                 transition: 0.2s all;
+                transform: scale(0.8); // a che serve?
             }
             a:hover{
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -108,34 +129,38 @@ header{
             }
         }
     }
-    @media screen and (min-width: 576px) {
-        padding: 30px 80px;
+}
+@media screen and (min-width: 650px) {
+    header{
+        padding: 30px;
+        height: 300px;
+        transition: 0.5s all;
         .box {
             .left {
                 display: flex;
                 align-items: center;
-                > a{
+                > a {
                     .title {
                         display: block;
                     }
                 }
-                > nav {
-                    ul{
-                        margin: 0;
-                        list-style: none;
-                        display: flex;
-                        gap: 15px;
-                        a{
-                            color: white;
-                            text-decoration: none;
-                        }
-                    }
+            }
+            .right{
+                ul{
+                    display: flex;
+                    margin-top: 0px;
+                    margin-right: 0px;
+                }
+                a{
+                    transform: scale(1);
                 }
             }
         }
     }
 }
 
+
+// main 
 main{
     .container-fluid{
         background-color: white;
@@ -154,6 +179,43 @@ main{
         @media screen and (min-width: 992px) {
             margin: 0 100px;
             max-width: calc(100% - 200px);
+        }
+    }
+}
+
+//footer 
+footer{
+    width: 100%;
+    background-color: $mainColor;
+    .footer-container{
+        min-height: 120px;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1400px;
+        margin: 0px auto;
+        .link{
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            .box-link{
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin: 10px 0px;
+                font-size: 25px;
+                a{
+                    text-decoration: none;
+                    color: white;
+                    transition: 0.2s all;
+                }
+                a:hover{
+                    color: rgb(185, 185, 185);
+                }
+            }
         }
     }
 }
