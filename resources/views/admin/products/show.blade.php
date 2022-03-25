@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-xl-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h3>{{$product->name}}</h3>
@@ -46,7 +46,7 @@
                     <div class="card-body">
                         @if ($product->image)
                             <div class="mb-3">
-                                <img style="max-width: 100%" src="{{asset('storage/' . $product->image)}}" alt="{{$product->name}}">
+                                <img style="max-height: 200px" src="{{asset('storage/' . $product->image)}}" alt="{{$product->name}}">
                             </div>
                         @endif
                         <h4>Descrizione</h4>

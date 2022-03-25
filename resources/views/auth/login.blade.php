@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-xl-8">
             <div class="card">
-                <div class="card-header">Accesso</div>
+                <div class="card-header">Accedi all'area riservata</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

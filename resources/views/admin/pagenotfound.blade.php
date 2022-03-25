@@ -6,11 +6,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Errore</div>
-
                     <div class="card-body">
-
-                        <h1 style="text-align: center">404 - Page Not Found</h1>
-                        
+                        <h1 style="text-align: center">404 - Pagina non trovata!</h1>
                     </div>
                 </div>
             </div>

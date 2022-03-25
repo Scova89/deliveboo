@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-xl-8">
             <div class="card">
                 <div class="card-header">Verifica il tuo indirizzo e-mail</div>
 
