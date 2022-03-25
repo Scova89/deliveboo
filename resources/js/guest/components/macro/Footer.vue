@@ -25,7 +25,7 @@
                 </div>
                 <div class="box-link">
                     <a href="https://github.com/Scova89" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/francesco-scovacricchi-458a06234/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="col-12 col-xl-2 link">
@@ -42,7 +42,7 @@
                     Alessandro Luisi
                 </div>
                 <div class="box-link">
-                    <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/alelui" target="_blank"><i class="fa-brands fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/alessandro-luisi-39b44a172" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
