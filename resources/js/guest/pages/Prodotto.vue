@@ -2,10 +2,31 @@
     <div>
         <div class="container-top">
             <div class="info-box col-12 col-md-6">
-                <h4 class="">{{prodotto.name}}</h4>
-                <div>Descrizione: {{prodotto.description}}</div>
-                <div>Intolleranze: {{prodotto.intolerance}}</div>
-                <div>Prezzo: {{prodotto.price}} €</div>
+                <h2 class="">{{prodotto.name}}</h2>
+                <div class="start" v-if="prodotto.description">
+					<h5>
+						Descrizione
+					</h5> 
+					<p>
+						{{prodotto.description}}
+					</p>
+				</div>
+                <div class="start" v-if="prodotto.intolerance">
+					<h5>
+						Intolleranze
+					</h5> 
+					<p>
+						{{prodotto.intolerance}}
+					</p>
+				</div>
+                <div class="start">
+					<h5>
+						Prezzo
+					</h5> 
+					<p>
+						€ {{prodotto.price}}
+					</p>
+				</div>
                 <div class="container-btn-cart">
                     <div class="cart-btn add" @click="addCart(prodotto)">Aggiungi al carrello</div>
                     <div class="cart-btn remove" @click="removeCart(prodotto)">Rimuovi dal carrello</div>
@@ -178,7 +199,13 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
+p {
+	font-size: 16px;
+}
 
+.start {
+	align-self: flex-start;
+}
     div{
         .container-top{
             display: flex;
@@ -192,7 +219,7 @@ export default {
                 div{
                     margin: 10px 0px;
                 }
-                h4{
+                h2{
                     font-weight: 600;
                     font-size: 35px;
 
