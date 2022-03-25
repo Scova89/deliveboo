@@ -26,16 +26,10 @@ proprio ristorante.</p>
 
 
 <h2>I nostri collegamenti</h2>
-- Filippo Rossi <a href="https://github.com/FilippoR00" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/filippo-rossi" target="_blank">LinkedIn</a>
-- Ferdinando Letizia <a href="https://github.com/ferdlet" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/ferdinando-letizia" target="_blank">LinkedIn</a>
-- Francesco Scovacricchi <a href="https://github.com/Scova89" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/francesco-scovacricchi-458a06234/" target="_blank">LinkedIn</a>
-- Alessandro Mandaglio <a href="https://github.com/AlessandroMandaglio30" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/alessandro-mandaglio-9b4935232/" target="_blank">LinkedIn</a>
+
+- Filippo Rossi <a href="https://github.com/FilippoR00" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/filippo-rossi" target="_blank">LinkedIn</a> <br>
+- Ferdinando Letizia <a href="https://github.com/ferdlet" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/ferdinando-letizia" target="_blank">LinkedIn</a> <br>
+- Francesco Scovacricchi <a href="https://github.com/Scova89" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/francesco-scovacricchi-458a06234/" target="_blank">LinkedIn</a> <br>
+- Alessandro Mandaglio <a href="https://github.com/AlessandroMandaglio30" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/alessandro-mandaglio-9b4935232/" target="_blank">LinkedIn</a> <br>
 - Alessandro Luisi <a href="https://github.com/alelui" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/alessandro-luisi-39b44a172/" target="_blank">LinkedIn</a>
 
-
-
-
-<a href="https://github.com/AlessandroMandaglio30" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/alessandro-mandaglio-9b4935232/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-<a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/alessandro-luisi-39b44a172" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
