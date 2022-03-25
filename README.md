@@ -18,7 +18,7 @@
 <h2>Progetto</h2>
 
 <p>Creazione di una web app di food delivery basata su un brand famoso. L&apos;applicativo permette agli utenti di
-ricercare per categoria i vari ristoranti disponibili. L&apos;utente può aggiungere al carrelo i prodotti desiderati e
+ricercare per categoria i vari ristoranti disponibili. L&apos;utente può aggiungere al carrello i prodotti desiderati e
 procedere all&apos;acquisto. Una volte confermato il pagamento sia l&apos;utente che il ristoratore riceveranno una mail di
 conferma.
 Vi è anche una parte di backend dove il ristoratore può aggiungere, modificare ed eliminare i singoli prodotti del
