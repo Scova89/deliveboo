@@ -33,3 +33,13 @@ proprio ristorante.</p>
 - Alessandro Mandaglio <a href="https://github.com/AlessandroMandaglio30" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/alessandro-mandaglio-9b4935232/" target="_blank">LinkedIn</a> <br>
 - Alessandro Luisi <a href="https://github.com/alelui" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/alessandro-luisi-39b44a172/" target="_blank">LinkedIn</a>
 
+<h2>Immagini</h2>
+
+<a href="https://postimg.cc/cKbxPsbF" target="_blank"><img src="https://i.postimg.cc/vBQ4gTLw/screencapture-localhost-8000-2022-03-25-11-33-58.png" /></a><br/><br/>
+<a href="https://postimg.cc/1fGz418z" target="_blank"><img src="https://i.postimg.cc/sD8G6Vy5/screencapture-localhost-8000-carrello-2022-03-25-12-08-41.png" /></a><br/><br/>
+<a href="https://postimg.cc/8jQ51zP3" target="_blank"><img src="https://i.postimg.cc/yYWSyJqV/screencapture-localhost-8000-prodotto-bucket-tender-or-tender-crispy.png"/></a><br/><br/>
+<a href="https://postimg.cc/3k9JCjC5" target="_blank"><img src="https://i.postimg.cc/wBYyz01v/screencapture-localhost-8000-ristoranti-burger-king-2022-03-25-12.png"/></a><br/><br/>
+<a href="https://postimg.cc/Tyw2kyCy" target="_blank"><img src="https://i.postimg.cc/PqbL5YDM/screencapture-localhost-8000-ristoranti-burger-king-2022-03-25-12-2.png"/></a><br/><br/>
+<a href="https://postimg.cc/YvtCWDFz" target="_blank"><img src="https://i.postimg.cc/9Q7RsvFK/screencapture-localhost-8000-ristoranti-kfc-2022-03-25-12-08-02.png"/></a><br/><br/>
+<a href='https://postimg.cc/gXyYjv0T' target='_blank'><img src='https://i.postimg.cc/nzgMd2fp/screencapture-localhost-8000-prodotto-big-mac-2022-03-25-12-31-01.png'/></a>
+
